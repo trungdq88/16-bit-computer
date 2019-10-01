@@ -74,12 +74,25 @@ exports.assembler = function(source) {
   let allocated = VARIABLE_MEMORY_OFFSET;
   const labels = {};
 
-  const code = source
+  const lines = source
     .trim()
     .split('\n')
     .map(_ => _.replace(/\/\/.*?$/, ''))
     .map(_ => _.trim())
-    .filter(Boolean)
+    .filter(Boolean);
+
+  lines.forEach((line, index) => {
+    if (line[0] === '(') {
+      const label = line.replace(/[\(\)]/g, '');
+      if (labels[label] !== undefined) {
+        throw new Error('duplicated label ' + label);
+      }
+      labels[label] = index - Object.keys(labels).length;
+      return null;
+    }
+  });
+
+  const code = lines
     .map((line, index) => {
       if (line[0] === '@') {
         const symbol = line.slice(1, line.length);
@@ -97,11 +110,6 @@ exports.assembler = function(source) {
           return assigned[symbol];
         }
       } else if (line[0] === '(') {
-        const label = line.replace(/[\(\)]/g, '');
-        if (labels[label] !== undefined) {
-          throw new Error('duplicated label ' + label);
-        }
-        labels[label] = index - Object.keys(labels).length;
         return null;
       } else {
         const parts = {

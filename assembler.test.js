@@ -1,6 +1,16 @@
 const { assembler } = require('./assembler.js');
 
 describe('assembler', () => {
+  it('should hoist labels', () => {
+    expect(
+      assembler(`
+        @HELLO
+        (HELLO)
+        @3
+    `)
+    ).toBe('1 3');
+  });
+
   it('works', () => {
     expect(
       assembler(`
