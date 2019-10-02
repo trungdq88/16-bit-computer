@@ -111,6 +111,8 @@ exports.assembler = function(source) {
         }
       } else if (line[0] === '(') {
         return null;
+      } else if (line === 'BREAK') {
+        return 0b100 << 13;
       } else {
         const parts = {
           dest: '',

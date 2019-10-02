@@ -24,6 +24,20 @@ describe('assembler', () => {
     ).toBe('2 ec10 2 e090 0 e308');
   });
 
+  it('break', () => {
+    expect(
+      assembler(`
+        @2
+        D=A
+        BREAK
+        @2
+        @0
+        BREAK
+        M=D
+    `)
+    ).toBe('2 ec10 8000 2 0 8000 e308');
+  });
+
   it('works 2', () => {
     expect(
       assembler(`
