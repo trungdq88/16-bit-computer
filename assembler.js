@@ -147,6 +147,10 @@ exports.assembler = function(source) {
 
         const jmpBits = JMP_MAP[parts.jump] || 0b000;
 
+        if (COMP_MAP[parts.comp] === undefined) {
+          throw new Error(parts.comp + ' is not a valid comp');
+        }
+
         return (
           (0b111 << 13) |
           (COMP_MAP[parts.comp] << 6) |
