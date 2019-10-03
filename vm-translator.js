@@ -2,7 +2,7 @@ const MEMORY_SEGMENT = {
   local: '@LCL',
   arg: '@ARG',
   this: '@THIS',
-  that: '@that',
+  that: '@THAT',
 };
 
 const CONSTANT_SEGMENT = {
@@ -30,7 +30,13 @@ const ARITHMETIC_COMPARE = {
   lt: 'D;JLT',
 };
 
-exports.vmTranslator = function(source) {
+const TEMP_ADDRESS = 5;
+
+exports.vmTranslator = function(source, programName) {
+  if (programName === undefined) {
+    programName = 'Unamed_' + Math.random();
+  }
+
   let labelAllocated = 0;
 
   function allocateLabel(name) {
@@ -47,18 +53,94 @@ exports.vmTranslator = function(source) {
     .map(line => {
       const parts = line.split(' ');
       const [command, segment, index] = parts;
-      if (MEMORY_SEGMENT[segment]) {
-        if (command === 'push') {
-          return pushMemorySegment(MEMORY_SEGMENT[segment], index);
-        } else if (command === 'pop') {
-          return popMemorySegment(MEMORY_SEGMENT[segment], index);
-        }
-      } else if (CONSTANT_SEGMENT[segment]) {
-        const [_a, _b, value] = parts;
-        if (command === 'push') {
-          return pushConstantSegment(value);
-        } else {
-          throw new Error('There is no pop for constant segment');
+      if (command === 'push' || command === 'pop') {
+        if (MEMORY_SEGMENT[segment]) {
+          if (command === 'push') {
+            return pushMemorySegment(MEMORY_SEGMENT[segment], index);
+          } else if (command === 'pop') {
+            return popMemorySegment(MEMORY_SEGMENT[segment], index);
+          }
+        } else if (CONSTANT_SEGMENT[segment]) {
+          const [_a, _b, value] = parts;
+          if (command === 'push') {
+            return pushConstantSegment(value);
+          } else {
+            throw new Error('There is no pop for constant segment');
+          }
+        } else if (segment === 'temp') {
+          const indexNumber = Number(index);
+          if (indexNumber < 0 || indexNumber > 7) {
+            throw new Error('Temp index must be from 0 to 7');
+          }
+          const register = '@R' + (indexNumber + TEMP_ADDRESS);
+          if (command === 'push') {
+            return [
+              register,
+              'D=M', // copy temp[index] value to D
+              '@SP',
+              'A=M',
+              'M=D',
+              '@SP',
+              'M=M+1',
+            ].join('\n');
+          } else {
+            return [
+              '@SP',
+              'M=M-1',
+              'A=M',
+              'D=M', // copy stack.pop() to D
+              register,
+              'M=D',
+            ].join('\n');
+          }
+        } else if (segment === 'static') {
+          const register = `@${programName}.${index}`;
+          if (command === 'push') {
+            return [
+              register,
+              'D=M', // copy static[index] to D
+              '@SP',
+              'A=M',
+              'M=D',
+              '@SP',
+              'M=M+1',
+            ].join('\n');
+          } else {
+            return [
+              '@SP',
+              'M=M-1',
+              'A=M',
+              'D=M', // D = stack.pop()
+              register,
+              'M=D',
+            ].join('\n');
+          }
+        } else if (segment === 'pointer') {
+          const register = {
+            0: '@THIS',
+            1: '@THAT',
+          }[index];
+
+          if (command === 'push') {
+            return [
+              register,
+              'D=M',
+              '@SP',
+              'A=M',
+              'M=D',
+              '@SP',
+              'M=M+1', ///////
+            ].join('\n');
+          } else {
+            return [
+              '@SP',
+              'M=M-1',
+              'A=M',
+              'D=M',
+              register,
+              'M=D', ///////
+            ].join('\n');
+          }
         }
       } else if (ARITHMETIC_BINARY[command]) {
         return [
@@ -83,8 +165,8 @@ exports.vmTranslator = function(source) {
           'M=M+1',
         ].join('\n');
       } else if (ARITHMETIC_COMPARE[command]) {
-        const [labelSymbolTrue, labelTrue] = allocateLabel('JUMP_EQ');
-        const [labelSymbolFalse, labelFalse] = allocateLabel('JUMP_NE');
+        const [labelSymbolTrue, labelTrue] = allocateLabel('COMPARE_TRUE');
+        const [labelSymbolFalse, labelFalse] = allocateLabel('COMPARE_FALSE');
         return [
           '@SP',
           'M=M-1',

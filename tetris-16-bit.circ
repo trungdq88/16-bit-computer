@@ -94,6 +94,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1180,810)" to="(1180,1450)"/>
     <wire from="(530,370)" to="(530,460)"/>
     <wire from="(1340,810)" to="(1340,1450)"/>
+    <wire from="(770,670)" to="(810,670)"/>
     <wire from="(810,520)" to="(810,670)"/>
     <wire from="(1880,890)" to="(1880,950)"/>
     <wire from="(1250,740)" to="(1250,790)"/>
@@ -172,7 +173,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(710,1290)" to="(780,1290)"/>
     <wire from="(300,170)" to="(310,170)"/>
     <wire from="(870,1290)" to="(940,1290)"/>
-    <wire from="(800,670)" to="(810,670)"/>
     <wire from="(490,270)" to="(560,270)"/>
     <wire from="(150,380)" to="(150,450)"/>
     <wire from="(220,190)" to="(220,390)"/>
@@ -208,6 +208,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1810,810)" to="(1810,1450)"/>
     <wire from="(650,310)" to="(650,350)"/>
     <wire from="(740,270)" to="(740,370)"/>
+    <wire from="(740,270)" to="(810,270)"/>
     <wire from="(70,170)" to="(80,170)"/>
     <wire from="(1510,810)" to="(1510,1130)"/>
     <wire from="(1670,810)" to="(1670,1130)"/>
@@ -489,6 +490,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(400,300)" to="(530,300)"/>
     <wire from="(530,290)" to="(540,290)"/>
     <wire from="(560,470)" to="(680,470)"/>
+    <wire from="(810,260)" to="(810,270)"/>
     <wire from="(1130,740)" to="(1130,750)"/>
     <wire from="(260,120)" to="(300,120)"/>
     <wire from="(1020,1450)" to="(1100,1450)"/>
@@ -567,6 +569,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(80,170)" name="Tunnel">
       <a name="label" val="RESET"/>
     </comp>
+    <comp lib="0" loc="(770,670)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4000"/>
+    </comp>
     <comp lib="5" loc="(3430,1420)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
@@ -587,13 +593,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="north"/>
     </comp>
     <comp loc="(2950,1260)" name="ScreenControl2"/>
+    <comp lib="6" loc="(751,691)" name="Text">
+      <a name="text" val="SCREEN OFFSET"/>
+    </comp>
     <comp lib="0" loc="(580,160)" name="Probe">
       <a name="facing" val="south"/>
-    </comp>
-    <comp lib="0" loc="(800,670)" name="Pin">
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Offset"/>
     </comp>
     <comp loc="(3270,1260)" name="ScreenControl2"/>
     <comp lib="0" loc="(1100,660)" name="Tunnel">
@@ -625,17 +629,46 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
     </comp>
+    <comp lib="0" loc="(810,260)" name="Probe">
+      <a name="facing" val="south"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="4" loc="(200,300)" name="ROM">
       <a name="addrWidth" val="16"/>
       <a name="dataWidth" val="16"/>
       <a name="contents">addr/data: 16 16
 100 ec10 0 e308 12c ec10 1 e308
 190 ec10 2 e308 bb8 ec10 3 e308
-bc2 ec10 4 e308 10 ec10 12e e308
-f ec10 133 e308 1 fc10 2 e090
-e320 fc10 0 fc20 e308 0 fdc8 8000
-2 fc10 7 e090 f e308 0 fc88
-fc20 fc10 f fc20 e308
+bc2 ec10 4 e308 8000 a ec10 0
+fc20 e308 0 fdc8 8000 1 fc10 0
+e090 f e308 0 fc88 fc20 fc10 f
+fc20 e308 8000 15 ec10 0 fc20 e308
+0 fdc8 8000 16 ec10 0 fc20 e308
+0 fdc8 8000 8000 8000 24 ec10 0
+fc20 e308 0 fdc8 8000 3 fc10 6
+e090 f e308 0 fc88 fc20 fc10 f
+fc20 e308 8000 2a ec10 0 fc20 e308
+0 fdc8 8000 2d ec10 0 fc20 e308
+0 fdc8 8000 4 fc10 5 e090 f
+e308 0 fc88 fc20 fc10 f fc20 e308
+8000 4 fc10 2 e090 f e308 0
+fc88 fc20 fc10 f fc20 e308 8000 1fe
+ec10 0 fc20 e308 0 fdc8 8000 0
+fc88 fc20 fc10 b e308 8000 1 fc10
+0 e090 e320 fc10 0 fc20 e308 0
+fdc8 8000 4 fc10 5 e090 e320 fc10
+0 fc20 e308 0 fdc8 8000 0 fc88
+fc20 fc10 0 fc88 fc20 f088 0 fdc8
+8000 8000 0 fc88 fc20 fc10 0 fc88
+fc20 f4c8 fcc8 0 fdc8 8000 3 fc10
+6 e090 e320 fc10 0 fc20 e308 0
+fdc8 8000 3 fc10 6 e090 e320 fc10
+0 fc20 e308 0 fdc8 8000 0 fc88
+fc20 fc10 0 fc88 fc20 f088 0 fdc8
+8000 0 fc88 fc20 fc10 0 fc88 fc20
+f4c8 fcc8 0 fdc8 8000 b fc10 0
+fc20 e308 0 fdc8 8000 0 fc88 fc20
+fc10 0 fc88 fc20 f088 0 fdc8
 </a>
     </comp>
     <comp lib="0" loc="(1220,790)" name="Splitter">

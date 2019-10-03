@@ -51,6 +51,7 @@ const PREDEFINED_SYMBOLS = {
   ARG: 2,
   THIS: 3,
   THAT: 4,
+  TEMP: 5,
   SCREEN: 16384,
   KBD: 24576,
 };

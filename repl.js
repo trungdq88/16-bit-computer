@@ -28,58 +28,68 @@ D=A
 @THAT
 M=D
 
-// Set local[2] to some thing
-@16
-D=A
-@302 // local[2] = 16
-M=D
-
-@15
-D=A
-@307 // local[7] = 15
-M=D
-
-// Put value at local[2] to the stack
+// // Set local[2] to some thing
+// @16
+// D=A
+// @302 // local[2] = 16
+// M=D
+//
+// @15
+// D=A
+// @307 // local[7] = 15
+// M=D
 
 ${vmTranslator(`
-push constant 17
-push constant 17
-eq
-push constant 17
-push constant 16
-eq
-push constant 16
-push constant 17
-eq
-push constant 892
-push constant 891
-lt
-push constant 891
-push constant 892
-lt
-push constant 891
-push constant 891
-lt
-push constant 32767
-push constant 32766
-gt
-push constant 32766
-push constant 32767
-gt
-push constant 32766
-push constant 32766
-gt
-push constant 57
-push constant 31
-push constant 53
+break
+push constant 10
+break
+pop local 0
+break
+push constant 21
+break
+push constant 22
+break
+pop argument 2
+break
+pop argument 1
+break
+push constant 36
+break
+pop this 6
+break
+push constant 42
+break
+push constant 45
+break
+pop that 5
+break
+pop that 2
+break
+push constant 510
+break
+pop temp 6
+break
+push local 0
+break
+push that 5
+break
 add
-push constant 112
+break
+push argument 1
+break
 sub
-neg
-and
-push constant 82
-or
-not
+break
+push this 6
+break
+push this 6
+break
+add
+break
+sub
+break
+push temp 6
+break
+add
 `)}
 
 
