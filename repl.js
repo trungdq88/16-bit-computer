@@ -40,55 +40,16 @@ M=D
 // M=D
 
 ${vmTranslator(`
-break
-push constant 10
-break
-pop local 0
-break
-push constant 21
-break
-push constant 22
-break
-pop argument 2
-break
-pop argument 1
-break
-push constant 36
-break
-pop this 6
-break
-push constant 42
-break
-push constant 45
-break
-pop that 5
-break
-pop that 2
-break
-push constant 510
-break
-pop temp 6
-break
-push local 0
-break
-push that 5
-break
-add
-break
-push argument 1
-break
+push constant 111
+push constant 333
+push constant 888
+pop static 8
+pop static 3
+pop static 1
+push static 3
+push static 1
 sub
-break
-push this 6
-break
-push this 6
-break
-add
-break
-sub
-break
-push temp 6
-break
+push static 8
 add
 `)}
 

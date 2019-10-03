@@ -1,6 +1,6 @@
 const MEMORY_SEGMENT = {
   local: '@LCL',
-  arg: '@ARG',
+  argument: '@ARG',
   this: '@THIS',
   that: '@THAT',
 };
@@ -141,6 +141,8 @@ exports.vmTranslator = function(source, programName) {
               'M=D', ///////
             ].join('\n');
           }
+        } else {
+          throw new Error('Segment invalid: ' + segment);
         }
       } else if (ARITHMETIC_BINARY[command]) {
         return [
