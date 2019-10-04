@@ -618,6 +618,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="incoming" val="16"/>
       <a name="appear" val="right"/>
     </comp>
+    <comp lib="6" loc="(472,635)" name="Text">
+      <a name="text" val="100 = BREAK"/>
+    </comp>
     <comp lib="0" loc="(280,190)" name="Splitter">
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
@@ -5585,103 +5588,103 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <circ-port height="8" pin="110,370" width="8" x="46" y="96"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
     </appear>
-    <wire from="(1190,180)" to="(1190,390)"/>
-    <wire from="(1200,190)" to="(1200,400)"/>
     <wire from="(340,410)" to="(400,410)"/>
-    <wire from="(1180,170)" to="(1180,380)"/>
-    <wire from="(1210,430)" to="(1210,450)"/>
-    <wire from="(890,420)" to="(950,420)"/>
+    <wire from="(1470,430)" to="(1470,450)"/>
+    <wire from="(1450,180)" to="(1450,390)"/>
+    <wire from="(1460,190)" to="(1460,400)"/>
+    <wire from="(1440,170)" to="(1440,380)"/>
+    <wire from="(880,420)" to="(880,430)"/>
+    <wire from="(1170,380)" to="(1210,380)"/>
     <wire from="(220,170)" to="(220,370)"/>
     <wire from="(230,180)" to="(230,380)"/>
     <wire from="(240,190)" to="(240,390)"/>
     <wire from="(180,180)" to="(230,180)"/>
     <wire from="(190,190)" to="(240,190)"/>
     <wire from="(610,420)" to="(670,420)"/>
-    <wire from="(1450,380)" to="(1490,380)"/>
     <wire from="(220,370)" to="(400,370)"/>
-    <wire from="(1430,420)" to="(1490,420)"/>
     <wire from="(630,380)" to="(670,380)"/>
-    <wire from="(910,380)" to="(950,380)"/>
-    <wire from="(1160,420)" to="(1160,430)"/>
+    <wire from="(1150,420)" to="(1210,420)"/>
+    <wire from="(930,430)" to="(930,450)"/>
+    <wire from="(920,190)" to="(920,400)"/>
+    <wire from="(1420,420)" to="(1420,430)"/>
+    <wire from="(910,180)" to="(910,390)"/>
+    <wire from="(900,170)" to="(900,380)"/>
     <wire from="(190,170)" to="(220,170)"/>
-    <wire from="(1470,450)" to="(1480,450)"/>
-    <wire from="(930,400)" to="(950,400)"/>
+    <wire from="(1470,430)" to="(1480,430)"/>
+    <wire from="(1190,190)" to="(1460,190)"/>
+    <wire from="(1180,180)" to="(1450,180)"/>
+    <wire from="(1470,410)" to="(1480,410)"/>
     <wire from="(240,390)" to="(400,390)"/>
-    <wire from="(1210,410)" to="(1220,410)"/>
-    <wire from="(1210,430)" to="(1220,430)"/>
+    <wire from="(1170,170)" to="(1440,170)"/>
+    <wire from="(1410,430)" to="(1420,430)"/>
+    <wire from="(1190,450)" to="(1200,450)"/>
     <wire from="(650,400)" to="(670,400)"/>
-    <wire from="(1150,430)" to="(1160,430)"/>
     <wire from="(180,180)" to="(180,220)"/>
     <wire from="(190,130)" to="(190,170)"/>
     <wire from="(110,320)" to="(130,320)"/>
-    <wire from="(1190,390)" to="(1220,390)"/>
+    <wire from="(910,390)" to="(940,390)"/>
     <wire from="(380,440)" to="(390,440)"/>
-    <wire from="(930,450)" to="(940,450)"/>
-    <wire from="(1470,400)" to="(1490,400)"/>
+    <wire from="(1450,390)" to="(1480,390)"/>
+    <wire from="(930,410)" to="(940,410)"/>
+    <wire from="(650,190)" to="(920,190)"/>
+    <wire from="(930,430)" to="(940,430)"/>
+    <wire from="(870,430)" to="(880,430)"/>
+    <wire from="(640,180)" to="(910,180)"/>
+    <wire from="(630,170)" to="(900,170)"/>
     <wire from="(650,450)" to="(660,450)"/>
-    <wire from="(930,190)" to="(1200,190)"/>
-    <wire from="(920,180)" to="(1190,180)"/>
-    <wire from="(910,170)" to="(1180,170)"/>
-    <wire from="(1480,430)" to="(1480,450)"/>
+    <wire from="(1190,400)" to="(1210,400)"/>
+    <wire from="(1190,190)" to="(1190,400)"/>
     <wire from="(610,420)" to="(610,430)"/>
-    <wire from="(1460,180)" to="(1460,390)"/>
-    <wire from="(1470,190)" to="(1470,400)"/>
-    <wire from="(1450,170)" to="(1450,380)"/>
-    <wire from="(890,420)" to="(890,430)"/>
-    <wire from="(1180,380)" to="(1220,380)"/>
+    <wire from="(1180,180)" to="(1180,390)"/>
+    <wire from="(1170,170)" to="(1170,380)"/>
+    <wire from="(1200,430)" to="(1200,450)"/>
+    <wire from="(880,420)" to="(940,420)"/>
+    <wire from="(1440,380)" to="(1480,380)"/>
     <wire from="(340,410)" to="(340,420)"/>
+    <wire from="(1420,420)" to="(1480,420)"/>
     <wire from="(190,190)" to="(190,270)"/>
     <wire from="(390,420)" to="(390,440)"/>
-    <wire from="(1160,420)" to="(1220,420)"/>
     <wire from="(230,380)" to="(400,380)"/>
-    <wire from="(940,430)" to="(940,450)"/>
+    <wire from="(900,380)" to="(940,380)"/>
     <wire from="(650,190)" to="(650,400)"/>
     <wire from="(640,180)" to="(640,390)"/>
     <wire from="(630,170)" to="(630,380)"/>
-    <wire from="(930,190)" to="(930,400)"/>
-    <wire from="(920,180)" to="(920,390)"/>
+    <wire from="(1150,420)" to="(1150,430)"/>
     <wire from="(660,430)" to="(660,450)"/>
-    <wire from="(910,170)" to="(910,380)"/>
-    <wire from="(1430,420)" to="(1430,430)"/>
-    <wire from="(1200,190)" to="(1470,190)"/>
-    <wire from="(1190,180)" to="(1460,180)"/>
-    <wire from="(1180,170)" to="(1450,170)"/>
-    <wire from="(1480,410)" to="(1490,410)"/>
-    <wire from="(1480,430)" to="(1490,430)"/>
-    <wire from="(630,170)" to="(910,170)"/>
-    <wire from="(640,180)" to="(920,180)"/>
-    <wire from="(650,190)" to="(930,190)"/>
-    <wire from="(1420,430)" to="(1430,430)"/>
-    <wire from="(1200,450)" to="(1210,450)"/>
+    <wire from="(1460,450)" to="(1470,450)"/>
+    <wire from="(920,400)" to="(940,400)"/>
+    <wire from="(1200,410)" to="(1210,410)"/>
+    <wire from="(1200,430)" to="(1210,430)"/>
     <wire from="(240,190)" to="(650,190)"/>
     <wire from="(230,180)" to="(640,180)"/>
     <wire from="(220,170)" to="(630,170)"/>
+    <wire from="(1140,430)" to="(1150,430)"/>
     <wire from="(640,390)" to="(670,390)"/>
-    <wire from="(920,390)" to="(950,390)"/>
     <wire from="(110,370)" to="(130,370)"/>
     <wire from="(170,170)" to="(190,170)"/>
     <wire from="(170,270)" to="(190,270)"/>
     <wire from="(390,400)" to="(400,400)"/>
     <wire from="(390,420)" to="(400,420)"/>
+    <wire from="(1180,390)" to="(1210,390)"/>
     <wire from="(330,420)" to="(340,420)"/>
     <wire from="(170,220)" to="(180,220)"/>
-    <wire from="(1460,390)" to="(1490,390)"/>
-    <wire from="(940,410)" to="(950,410)"/>
-    <wire from="(940,430)" to="(950,430)"/>
-    <wire from="(880,430)" to="(890,430)"/>
+    <wire from="(920,450)" to="(930,450)"/>
+    <wire from="(1460,400)" to="(1480,400)"/>
     <wire from="(660,430)" to="(670,430)"/>
     <wire from="(660,410)" to="(670,410)"/>
-    <wire from="(1200,400)" to="(1220,400)"/>
+    <wire from="(920,190)" to="(1190,190)"/>
     <wire from="(600,430)" to="(610,430)"/>
+    <wire from="(910,180)" to="(1180,180)"/>
+    <wire from="(900,170)" to="(1170,170)"/>
     <comp lib="0" loc="(750,510)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(750,430)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
+    <comp lib="0" loc="(1470,410)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xbc2"/>
     </comp>
-    <comp lib="0" loc="(1570,250)" name="Probe">
+    <comp lib="0" loc="(750,430)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5694,25 +5697,24 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp loc="(1300,250)" name="Adapter"/>
     <comp lib="0" loc="(750,310)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,550)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
+    <comp lib="0" loc="(1190,450)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RESET"/>
     </comp>
     <comp lib="0" loc="(750,670)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,670)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
     <comp lib="6" loc="(369,35)" name="Text">
       <a name="text" val="Replicate several segments of RAM into probes to inspect the values in decimal"/>
+    </comp>
+    <comp lib="0" loc="(1290,330)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(390,400)" name="Constant">
       <a name="width" val="16"/>
@@ -5722,46 +5724,44 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,350)" name="Probe">
+    <comp lib="0" loc="(1290,430)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1410,430)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CLK"/>
     </comp>
     <comp lib="0" loc="(480,660)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,470)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="6" loc="(1328,231)" name="Text">
-      <a name="text" val="THIS"/>
-    </comp>
     <comp lib="0" loc="(750,250)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(1020,570)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1560,250)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp loc="(1240,250)" name="Replicator"/>
     <comp lib="0" loc="(110,320)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="CLK"/>
     </comp>
-    <comp lib="0" loc="(1030,850)" name="Probe">
+    <comp lib="0" loc="(1020,850)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1200,410)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xbb8"/>
     </comp>
     <comp lib="0" loc="(480,780)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1300,330)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,250)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,530)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5773,7 +5773,23 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(1020,250)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,750)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,390)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="0" loc="(480,560)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1560,270)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5785,52 +5801,48 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(750,410)" name="Probe">
+    <comp lib="0" loc="(1020,790)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(930,450)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="RESET"/>
+    <comp lib="0" loc="(750,410)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(480,520)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,270)" name="Probe">
+    <comp lib="0" loc="(1020,770)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,510)" name="Probe">
+    <comp lib="0" loc="(1020,630)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,270)" name="Probe">
+    <comp loc="(1510,250)" name="Replicator"/>
+    <comp lib="0" loc="(1560,310)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,410)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1300,390)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp loc="(1520,250)" name="Replicator"/>
     <comp lib="0" loc="(170,270)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="Write"/>
+    </comp>
+    <comp lib="0" loc="(1460,450)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RESET"/>
+    </comp>
+    <comp lib="0" loc="(1290,290)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(480,240)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
     <comp loc="(430,240)" name="Replicator"/>
-    <comp lib="0" loc="(1470,450)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="RESET"/>
-    </comp>
     <comp lib="0" loc="(480,760)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
@@ -5839,15 +5851,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp loc="(1290,250)" name="Adapter"/>
     <comp lib="0" loc="(480,540)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,370)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1570,390)" name="Probe">
+    <comp lib="0" loc="(1290,270)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5859,9 +5868,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1300,310)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
+    <comp lib="0" loc="(930,410)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x190"/>
     </comp>
     <comp lib="0" loc="(380,440)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -5875,11 +5884,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,450)" name="Probe">
+    <comp lib="0" loc="(750,390)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(750,390)" name="Probe">
+    <comp lib="0" loc="(1290,370)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5891,28 +5900,40 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(1020,590)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp loc="(1020,250)" name="Adapter"/>
     <comp lib="0" loc="(600,430)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(1560,410)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(480,480)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,290)" name="Probe">
+    <comp lib="0" loc="(1020,330)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp loc="(1030,250)" name="Adapter"/>
+    <comp lib="0" loc="(1140,430)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CLK"/>
+    </comp>
     <comp lib="0" loc="(480,680)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(480,640)" name="Probe">
+    <comp lib="0" loc="(1560,330)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1300,370)" name="Probe">
+    <comp lib="0" loc="(480,640)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5924,11 +5945,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,330)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,330)" name="Probe">
+    <comp lib="0" loc="(1560,430)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5936,14 +5953,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,430)" name="Probe">
+    <comp lib="0" loc="(1020,670)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,690)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
+    <comp loc="(1560,250)" name="Adapter"/>
     <comp lib="0" loc="(480,860)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
@@ -5956,27 +5970,26 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(1020,810)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="0" loc="(480,300)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,710)" name="Probe">
+    <comp lib="0" loc="(1020,710)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,310)" name="Probe">
+    <comp lib="0" loc="(1020,470)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,730)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
+    <comp lib="6" loc="(1318,231)" name="Text">
+      <a name="text" val="THIS"/>
     </comp>
-    <comp lib="0" loc="(1300,430)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1300,270)" name="Probe">
+    <comp lib="0" loc="(1020,830)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -5984,18 +5997,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1150,430)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="CLK"/>
-    </comp>
     <comp lib="0" loc="(750,370)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,810)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
+    <comp loc="(970,250)" name="Replicator"/>
     <comp lib="0" loc="(130,370)" name="Tunnel">
       <a name="label" val="RESET"/>
     </comp>
@@ -6003,17 +6009,20 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="east"/>
       <a name="label" val="RESET"/>
     </comp>
-    <comp loc="(1570,250)" name="Adapter"/>
     <comp lib="0" loc="(480,700)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,630)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
     <comp lib="6" loc="(780,232)" name="Text">
       <a name="text" val="LOCAL"/>
+    </comp>
+    <comp lib="0" loc="(1560,350)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,310)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(750,530)" name="Probe">
       <a name="facing" val="west"/>
@@ -6023,23 +6032,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,770)" name="Probe">
+    <comp lib="0" loc="(1020,550)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,790)" name="Probe">
+    <comp lib="0" loc="(1560,290)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="6" loc="(1597,232)" name="Text">
-      <a name="text" val="THAT"/>
-    </comp>
-    <comp lib="6" loc="(519,221)" name="Text">
-      <a name="text" val="STACK POINTER"/>
-    </comp>
-    <comp lib="0" loc="(1210,410)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0xbb8"/>
     </comp>
     <comp lib="0" loc="(480,280)" name="Probe">
       <a name="facing" val="west"/>
@@ -6050,11 +6049,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="radix" val="10signed"/>
     </comp>
     <comp loc="(480,240)" name="Adapter"/>
-    <comp lib="0" loc="(1570,350)" name="Probe">
+    <comp lib="0" loc="(480,420)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(480,420)" name="Probe">
+    <comp lib="6" loc="(1587,232)" name="Text">
+      <a name="text" val="THAT"/>
+    </comp>
+    <comp lib="0" loc="(1290,250)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6062,17 +6064,21 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,650)" name="Probe">
+    <comp lib="0" loc="(1020,270)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,410)" name="Probe">
+    <comp lib="0" loc="(1290,390)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(750,550)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(920,450)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RESET"/>
     </comp>
     <comp loc="(700,250)" name="Replicator"/>
     <comp lib="0" loc="(750,650)" name="Probe">
@@ -6082,16 +6088,19 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(130,320)" name="Tunnel">
       <a name="label" val="CLK"/>
     </comp>
+    <comp lib="0" loc="(1020,490)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,870)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="0" loc="(330,420)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CLK"/>
     </comp>
-    <comp lib="0" loc="(1030,750)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp loc="(1250,250)" name="Replicator"/>
-    <comp lib="0" loc="(1030,490)" name="Probe">
+    <comp lib="0" loc="(1020,690)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6099,9 +6108,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1420,430)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="CLK"/>
+    <comp lib="0" loc="(1560,370)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(110,370)" name="Pin">
       <a name="tristate" val="false"/>
@@ -6112,11 +6121,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="Data"/>
     </comp>
-    <comp lib="0" loc="(1300,250)" name="Probe">
+    <comp lib="0" loc="(1020,510)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,290)" name="Probe">
+    <comp lib="0" loc="(1020,350)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6124,15 +6133,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="0" loc="(1560,390)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="0" loc="(480,500)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1200,450)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="RESET"/>
-    </comp>
-    <comp lib="0" loc="(1300,290)" name="Probe">
+    <comp lib="0" loc="(1020,370)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6144,12 +6153,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,870)" name="Probe">
+    <comp lib="0" loc="(870,430)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(1290,410)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="6" loc="(1062,233)" name="Text">
-      <a name="text" val="ARG"/>
     </comp>
     <comp lib="0" loc="(750,750)" name="Probe">
       <a name="facing" val="west"/>
@@ -6159,19 +6169,22 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp lib="6" loc="(1052,233)" name="Text">
+      <a name="text" val="ARG"/>
+    </comp>
     <comp lib="0" loc="(750,870)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,570)" name="Probe">
+    <comp lib="0" loc="(1020,450)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,430)" name="Probe">
+    <comp lib="0" loc="(1020,530)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1300,410)" name="Probe">
+    <comp lib="0" loc="(1020,730)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6179,33 +6192,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1030,390)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
+    <comp lib="6" loc="(511,222)" name="Text">
+      <a name="text" val="STACK"/>
     </comp>
     <comp lib="0" loc="(480,340)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(940,410)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0x190"/>
-    </comp>
-    <comp loc="(980,250)" name="Replicator"/>
-    <comp lib="0" loc="(1030,610)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,830)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
-    </comp>
     <comp lib="0" loc="(190,130)" name="Probe">
       <a name="facing" val="south"/>
-      <a name="radix" val="10signed"/>
-    </comp>
-    <comp lib="0" loc="(1030,590)" name="Probe">
-      <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(480,380)" name="Probe">
@@ -6220,16 +6215,20 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp loc="(750,250)" name="Adapter"/>
-    <comp lib="0" loc="(1300,350)" name="Probe">
+    <comp lib="0" loc="(1290,350)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
+    <comp loc="(750,250)" name="Adapter"/>
     <comp lib="0" loc="(480,460)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,370)" name="Probe">
+    <comp lib="0" loc="(1020,610)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,430)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
@@ -6237,23 +6236,27 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(880,430)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="CLK"/>
+    <comp lib="0" loc="(1020,290)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(750,450)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1480,410)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0xbc2"/>
+    <comp lib="0" loc="(1020,410)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
+    <comp lib="0" loc="(1020,650)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="0" loc="(750,570)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
-    <comp lib="0" loc="(1570,310)" name="Probe">
+    <comp lib="0" loc="(1290,310)" name="Probe">
       <a name="facing" val="west"/>
       <a name="radix" val="10signed"/>
     </comp>
