@@ -44,6 +44,8 @@ exports.vmTranslator = function(source, programName) {
     return ['@' + label, `(${label})`];
   }
 
+  let returnLabelCount = 1;
+
   return source
     .trim()
     .split('\n')
@@ -215,6 +217,56 @@ exports.vmTranslator = function(source, programName) {
           'D;JNE', //
         ].join('\n');
         return `(GOTO.${label})`;
+      } else if (command === 'call') {
+        const [_, funcName, nArgs] = parts;
+        if (funcName === undefined || nArgs === undefined) {
+          throw new Error('funcName and nArgs must be defined');
+        }
+        const labelName = `${programName}.$ret.${returnLabelCount}`;
+        returnLabelCount += 1;
+
+        const push = something => {
+          return [
+            something,
+            'D=A',
+            '@SP',
+            'A=M',
+            'M=D',
+            '@SP',
+            'M=M+1', //
+          ].join('\n');
+        };
+
+        return [
+          push(`@${labelName}`),
+          push('@LCL'),
+          push('@ARG'),
+          push('@THIS'),
+          push('@THAT'),
+
+          // 'BREAK',
+          // ARG=SP-5-nArgs
+          '@SP',
+          'D=M',
+          '@5',
+          'D=D-A',
+          '@' + nArgs,
+          'D=D-A',
+          '@ARG',
+          'M=D',
+
+          // LCL=SP
+          '@SP',
+          'D=M',
+          '@LCL',
+          'M=D',
+
+          // go to function name
+          `@${funcName}`,
+          '0;JMP',
+
+          `(${labelName})`,
+        ].join('\n');
       } else {
         throw new Error(command + ' is invalid');
       }
