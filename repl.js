@@ -39,18 +39,26 @@ M=D
 // @307 // local[7] = 15
 // M=D
 
+@10
+D=A
+@400 // argument[0] = 10
+M=D
+
 ${vmTranslator(`
-push constant 111
-push constant 333
-push constant 888
-pop static 8
-pop static 3
-pop static 1
-push static 3
-push static 1
-sub
-push static 8
+push constant 0    
+pop local 0         // initializes sum = 0
+label LOOP_START
+push argument 0    
+push local 0
 add
+pop local 0	        // sum = sum + counter
+push argument 0
+push constant 1
+sub
+pop argument 0      // counter--
+push argument 0
+if-goto LOOP_START  // If counter > 0, goto LOOP_START
+push local 0
 `)}
 
 

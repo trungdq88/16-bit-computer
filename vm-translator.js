@@ -195,6 +195,26 @@ exports.vmTranslator = function(source, programName) {
         ].join('\n');
       } else if (command === 'break') {
         return 'BREAK';
+      } else if (command === 'goto') {
+        const [_, label] = parts;
+        return [
+          '@GOTO.' + label,
+          '0;JMP', //
+        ].join('\n');
+      } else if (command === 'label') {
+        const [_, label] = parts;
+        return `(GOTO.${label})`;
+      } else if (command === 'if-goto') {
+        const [_, label] = parts;
+        return [
+          '@SP',
+          'M=M-1',
+          'A=M',
+          'D=M',
+          `@GOTO.${label}`,
+          'D;JNE', //
+        ].join('\n');
+        return `(GOTO.${label})`;
       } else {
         throw new Error(command + ' is invalid');
       }
