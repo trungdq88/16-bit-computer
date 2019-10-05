@@ -3,50 +3,56 @@ const { vmTranslator } = require('./vm-translator.js');
 
 console.log(
   assembler(`
-@256
-D=A
-@SP
-M=D
-
-@300
-D=A
-@LCL
-M=D
-
-@400
-D=A
-@ARG
-M=D
-
-@3000
-D=A
-@THIS
-M=D
-
-@3010
-D=A
-@THAT
-M=D
-
-// // Set local[2] to some thing
-// @16
-// D=A
-// @302 // local[2] = 16
-// M=D
-//
-// @15
-// D=A
-// @307 // local[7] = 15
-// M=D
-
-${vmTranslator(`
-push constant 1
-push constant 2
-call GOTO.END 2
-label END
+${c(
+  vmTranslator(`
+  set sp 261
+  `)
+)}
+${c(
+  vmTranslator(
+    `
+function Sys.init 0
+push constant 4
+call Main.fibonacci 1   // computes the 4'th fibonacci element
+label WHILE
 break
-`)}
+  `,
+    'Sys.vm'
+  )
+)}
+${c(
+  vmTranslator(
+    `
+function Main.fibonacci 0
+push argument 0
+push constant 2
+lt                     
+if-goto IF_TRUE
+goto IF_FALSE
+label IF_TRUE          
+push argument 0        
+return
+label IF_FALSE         // if n>=2, returns fib(n-2)+fib(n-1)
+push argument 0
+push constant 2
+sub
+call Main.fibonacci 1  // computes fib(n-2)
+push argument 0
+push constant 1
+sub
+call Main.fibonacci 1  // computes fib(n-1)
+add                    // returns fib(n-1) + fib(n-2)
+return
+  `,
+    'Main.vm'
+  )
+)}
 
 
 `)
 );
+
+function c(args) {
+  console.log(args);
+  return args;
+}
