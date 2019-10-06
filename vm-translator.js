@@ -232,33 +232,32 @@ exports.vmTranslator = function(source, programName) {
           const labelName = `${programName}.$ret.${returnLabelCount}`;
           returnLabelCount += 1;
 
+          const functionAddress = '@R15';
+          const nArgsAddress = '@R14';
+          const labelAddress = '@R13';
+
           return [
-            pushConstantSegment(`${labelName}`),
-            pushConstantSegment('LCL', { dereference: true }),
-            pushConstantSegment('ARG', { dereference: true }),
-            pushConstantSegment('THIS', { dereference: true }),
-            pushConstantSegment('THAT', { dereference: true }),
-
-            // ARG=SP-5-nArgs
-            '@SP',
-            'D=M',
-            '@5',
-            'D=D-A',
-            '@' + nArgs,
-            'D=D-A',
-            '@ARG',
+            '// Set nArgs',
+            `@${nArgs}`,
+            'D=A',
+            nArgsAddress,
             'M=D',
 
-            // LCL=SP
-            '@SP',
-            'D=M',
-            '@LCL',
-            'M=D',
-
-            // go to function name
+            '// Set function address',
             `@${funcName}`,
-            '0;JMP',
+            'D=A',
+            functionAddress,
+            'M=D',
 
+            '// Set label address',
+            `@${labelName}`,
+            'D=A',
+            labelAddress,
+            'M=D',
+
+            '// Call shared code',
+            '@__CALL',
+            '0;JMP',
             `(${labelName})`,
           ].join('\n');
         } else if (command === 'function') {
@@ -368,7 +367,7 @@ function popMemorySegment(segmentSymbol, index) {
 
 function pushConstantSegment(value, { dereference } = {}) {
   return [
-    '@' + value,
+    value === undefined ? '' : '@' + value,
     dereference ? 'D=M' : 'D=A',
     '@SP',
     'A=M',
@@ -379,6 +378,10 @@ function pushConstantSegment(value, { dereference } = {}) {
 }
 
 function sharedCode() {
+  return [sharedCodeReturn(), sharedCodeCall()].join('\n');
+}
+
+function sharedCodeReturn() {
   const endFrame = '@R15';
   const returnAddress = '@R14';
 
@@ -454,6 +457,41 @@ function sharedCode() {
 
     // goto returnAddress
     returnAddress,
+    'A=M',
+    '0;JMP',
+  ].join('\n');
+}
+
+function sharedCodeCall() {
+  const functionAddress = '@R15';
+  const nArgsAddress = '@R14';
+
+  return [
+    '(__CALL)',
+    pushConstantSegment('R13', { dereference: true }),
+    pushConstantSegment('LCL', { dereference: true }),
+    pushConstantSegment('ARG', { dereference: true }),
+    pushConstantSegment('THIS', { dereference: true }),
+    pushConstantSegment('THAT', { dereference: true }),
+
+    // ARG=SP-5-nArgs
+    '@SP',
+    'D=M',
+    '@5',
+    'D=D-A',
+    nArgsAddress,
+    'D=D-M',
+    '@ARG',
+    'M=D',
+
+    // LCL=SP
+    '@SP',
+    'D=M',
+    '@LCL',
+    'M=D',
+
+    // go to function name
+    functionAddress,
     'A=M',
     '0;JMP',
   ].join('\n');
