@@ -65,6 +65,7 @@ pop argument 0          // num_of_elements--
 goto MAIN_LOOP_START
 
 label END_PROGRAM
+break
   `,
     'Sys.vm'
   )
