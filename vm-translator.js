@@ -38,9 +38,10 @@ exports.vmTranslator = function(source, programName) {
   }
 
   let labelAllocated = 0;
+  let currentFunction = null;
 
   function allocateLabel(name) {
-    const label = `${labelAllocated++}/${name}`;
+    const label = `${programName}.${labelAllocated++}/${name}`;
     return ['@' + label, `(${label})`];
   }
 
@@ -200,12 +201,17 @@ exports.vmTranslator = function(source, programName) {
       } else if (command === 'goto') {
         const [_, label] = parts;
         return [
-          '@GOTO.' + label,
+          `@${currentFunction}.${label}`,
           '0;JMP', //
         ].join('\n');
       } else if (command === 'label') {
         const [_, label] = parts;
-        return `(GOTO.${label})`;
+        if (currentFunction === null) {
+          // throw new Error(
+          //   'label not in a function: ' + line + ':' + programName
+          // );
+        }
+        return `(${currentFunction}.${label})`;
       } else if (command === 'if-goto') {
         const [_, label] = parts;
         return [
@@ -213,10 +219,10 @@ exports.vmTranslator = function(source, programName) {
           'M=M-1',
           'A=M',
           'D=M',
-          `@GOTO.${label}`,
+          `@${currentFunction}.${label}`,
           'D;JNE', //
         ].join('\n');
-        return `(GOTO.${label})`;
+        return `(${programName}.${label})`;
       } else if (command === 'call') {
         const [_, funcName, nArgs = 0] = parts;
         if (funcName === undefined) {
@@ -249,21 +255,23 @@ exports.vmTranslator = function(source, programName) {
           'M=D',
 
           // go to function name
-          `@FUNC.${funcName}`,
+          `@${funcName}`,
           '0;JMP',
 
           `(${labelName})`,
         ].join('\n');
       } else if (command === 'function') {
         const [_, funcName, nArgs] = parts;
+        currentFunction = funcName;
         return [
-          `(FUNC.${funcName})`,
+          `(${funcName})`,
           new Array(Number(nArgs)).fill(pushConstantSegment('0')).join('\n'),
           //
         ].join('\n');
       } else if (command === 'return') {
         const endFrame = '@R15';
         const returnAddress = '@R14';
+        currentFunction = null;
         return [
           // endFrame = LCL
           '@LCL',
@@ -433,5 +441,86 @@ function pushConstantSegment(value, { dereference } = {}) {
     'M=D',
     '@SP',
     'M=M+1', //
+  ].join('\n');
+}
+
+function sharedCode() {
+  const endFrame = '@R15';
+  const returnAddress = '@R14';
+
+  return [
+    // endFrame = LCL
+    '($RETURN$)',
+    '@LCL',
+    'D=M',
+    endFrame,
+    'M=D',
+
+    // return address = endFrame - 5
+    // (resue D=*(LCL) state)
+    '@5',
+    'D=D-A',
+    'A=D',
+    'D=M',
+    returnAddress,
+    'M=D',
+
+    // *ARG = pop()
+    '@SP',
+    'M=M-1',
+    'A=M',
+    'D=M',
+    '@ARG',
+    'A=M',
+    'M=D',
+
+    // SP = ARG + 1
+    // (reuse A = *(ARG) state)
+    'D=A+1',
+    '@SP',
+    'M=D',
+
+    // THAT=*(endFrame - 1)
+    endFrame,
+    'D=M-1',
+    'A=D',
+    'D=M',
+    '@THAT',
+    'M=D',
+
+    // THIS=*(endFrame - 2)
+    endFrame,
+    'D=M',
+    '@2',
+    'D=D-A',
+    'A=D',
+    'D=M',
+    '@THIS',
+    'M=D',
+
+    // ARG=*(endFrame - 3)
+    endFrame,
+    'D=M',
+    '@3',
+    'D=D-A',
+    'A=D',
+    'D=M',
+    '@ARG',
+    'M=D',
+
+    // LCL=*(endFrame - 4)
+    endFrame,
+    'D=M',
+    '@4',
+    'D=D-A',
+    'A=D',
+    'D=M',
+    '@LCL',
+    'M=D',
+
+    // goto returnAddress
+    returnAddress,
+    'A=M',
+    '0;JMP',
   ].join('\n');
 }

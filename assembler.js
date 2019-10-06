@@ -89,6 +89,9 @@ exports.assembler = function(source) {
         throw new Error('duplicated label ' + label);
       }
       labels[label] = index - Object.keys(labels).length;
+      if (labels[label] >= 2 ** 15) {
+        throw new Error('Max label line index exceeded! ' + index);
+      }
       return null;
     }
   });
@@ -104,6 +107,10 @@ exports.assembler = function(source) {
         } else if (assigned[symbol] !== undefined) {
           return assigned[symbol];
         } else if (labels[symbol] !== undefined) {
+          if (labels[symbol].toString(16) === '97d7') {
+            console.log(Object.values(labels));
+            throw new Error('---');
+          }
           return labels[symbol];
         } else {
           assigned[symbol] = allocated;
@@ -152,12 +159,16 @@ exports.assembler = function(source) {
           throw new Error(parts.comp + ' is not a valid comp. line = ' + line);
         }
 
-        return (
+        const result =
           (0b111 << 13) |
           (COMP_MAP[parts.comp] << 6) |
           (destBits << 3) |
-          jmpBits
-        );
+          jmpBits;
+
+        if (result.toString(16) === '97d7') {
+          throw new Error('>>>');
+        }
+        return result;
       }
     })
     .filter(_ => _ !== null)
