@@ -95,7 +95,6 @@ push constant 6
 pop local 3
 push constant 123
 call Sys.add12 1
-break
 pop temp 0
 push local 0
 push local 1
@@ -106,7 +105,6 @@ add
 add
 add
 add
-break
 return
 
 // Sys.add12(int n)
@@ -121,7 +119,6 @@ pop pointer 1
 push argument 0
 push constant 12
 add
-break
 return
   `)
 )}

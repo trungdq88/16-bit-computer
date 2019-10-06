@@ -306,7 +306,9 @@ exports.vmTranslator = function(source, programName) {
           throw new Error(command + ' is invalid');
         }
       })
-      .join('\n') + sharedCode()
+      .join('\n') +
+    '\n' +
+    sharedCode()
   );
 };
 
