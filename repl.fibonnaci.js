@@ -15,8 +15,8 @@ ${c(
 function Sys.init 0
 push constant 5
 call Main.fibonacci 1   // computes the 4'th fibonacci element
-break
-return
+label WHILE
+    break
   `,
     'Sys.vm'
   )
@@ -27,12 +27,11 @@ ${c(
 function Main.fibonacci 0
 push argument 0
 push constant 2
-break
 lt                     // checks if n<2
 if-goto IF_TRUE
 goto IF_FALSE
 label IF_TRUE          // if n<2, return n
-push argument 0
+push argument 0        
 return
 label IF_FALSE         // if n>=2, returns fib(n-2)+fib(n-1)
 push argument 0
@@ -45,7 +44,8 @@ sub
 call Main.fibonacci 1  // computes fib(n-1)
 add                    // returns fib(n-1) + fib(n-2)
 return
-  `
+  `,
+    'Main.vm'
   )
 )}
 

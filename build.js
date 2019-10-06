@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { assembler } = require('./assembler.js');
-const { vmTranslator } = require('./vm-translator.js');
+const { vmTranslator, sharedCode } = require('./vm-translator.js');
 
 const folder = process.argv.slice(-1)[0];
 
@@ -14,5 +14,6 @@ fs.readdir(folder, (err, files) => {
         '\n';
     }
   });
+  source += sharedCode();
   console.log(source);
 });
