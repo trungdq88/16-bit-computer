@@ -47,335 +47,269 @@ exports.vmTranslator = function(source, programName) {
 
   let returnLabelCount = 1;
 
-  return source
-    .trim()
-    .split('\n')
-    .map(_ => _.replace(/\/\/.*?$/, ''))
-    .map(_ => _.trim())
-    .filter(Boolean)
-    .map(line => {
-      const parts = line.split(' ');
-      const [command, segment, index] = parts;
-      if (command === 'push' || command === 'pop') {
-        if (MEMORY_SEGMENT[segment]) {
-          if (command === 'push') {
-            return pushMemorySegment(MEMORY_SEGMENT[segment], index);
-          } else if (command === 'pop') {
-            return popMemorySegment(MEMORY_SEGMENT[segment], index);
-          }
-        } else if (CONSTANT_SEGMENT[segment]) {
-          const [_a, _b, value] = parts;
-          if (command === 'push') {
-            return pushConstantSegment(value);
-          } else {
-            throw new Error('There is no pop for constant segment');
-          }
-        } else if (segment === 'temp') {
-          const indexNumber = Number(index);
-          if (indexNumber < 0 || indexNumber > 7) {
-            throw new Error('Temp index must be from 0 to 7');
-          }
-          const register = '@R' + (indexNumber + TEMP_ADDRESS);
-          if (command === 'push') {
-            return [
-              register,
-              'D=M', // copy temp[index] value to D
-              '@SP',
-              'A=M',
-              'M=D',
-              '@SP',
-              'M=M+1',
-            ].join('\n');
-          } else {
-            return [
-              '@SP',
-              'M=M-1',
-              'A=M',
-              'D=M', // copy stack.pop() to D
-              register,
-              'M=D',
-            ].join('\n');
-          }
-        } else if (segment === 'static') {
-          const register = `@${programName}.${index}`;
-          if (command === 'push') {
-            return [
-              register,
-              'D=M', // copy static[index] to D
-              '@SP',
-              'A=M',
-              'M=D',
-              '@SP',
-              'M=M+1',
-            ].join('\n');
-          } else {
-            return [
-              '@SP',
-              'M=M-1',
-              'A=M',
-              'D=M', // D = stack.pop()
-              register,
-              'M=D',
-            ].join('\n');
-          }
-        } else if (segment === 'pointer') {
-          const register = {
-            0: '@THIS',
-            1: '@THAT',
-          }[index];
+  return (
+    source
+      .trim()
+      .split('\n')
+      .map(_ => _.replace(/\/\/.*?$/, ''))
+      .map(_ => _.trim())
+      .filter(Boolean)
+      .map(line => {
+        const parts = line.split(' ');
+        const [command, segment, index] = parts;
+        if (command === 'push' || command === 'pop') {
+          if (MEMORY_SEGMENT[segment]) {
+            if (command === 'push') {
+              return pushMemorySegment(MEMORY_SEGMENT[segment], index);
+            } else if (command === 'pop') {
+              return popMemorySegment(MEMORY_SEGMENT[segment], index);
+            }
+          } else if (CONSTANT_SEGMENT[segment]) {
+            const [_a, _b, value] = parts;
+            if (command === 'push') {
+              return pushConstantSegment(value);
+            } else {
+              throw new Error('There is no pop for constant segment');
+            }
+          } else if (segment === 'temp') {
+            const indexNumber = Number(index);
+            if (indexNumber < 0 || indexNumber > 7) {
+              throw new Error('Temp index must be from 0 to 7');
+            }
+            const register = '@R' + (indexNumber + TEMP_ADDRESS);
+            if (command === 'push') {
+              return [
+                register,
+                'D=M', // copy temp[index] value to D
+                '@SP',
+                'A=M',
+                'M=D',
+                '@SP',
+                'M=M+1',
+              ].join('\n');
+            } else {
+              return [
+                '@SP',
+                'M=M-1',
+                'A=M',
+                'D=M', // copy stack.pop() to D
+                register,
+                'M=D',
+              ].join('\n');
+            }
+          } else if (segment === 'static') {
+            const register = `@${programName}.${index}`;
+            if (command === 'push') {
+              return [
+                register,
+                'D=M', // copy static[index] to D
+                '@SP',
+                'A=M',
+                'M=D',
+                '@SP',
+                'M=M+1',
+              ].join('\n');
+            } else {
+              return [
+                '@SP',
+                'M=M-1',
+                'A=M',
+                'D=M', // D = stack.pop()
+                register,
+                'M=D',
+              ].join('\n');
+            }
+          } else if (segment === 'pointer') {
+            const register = {
+              0: '@THIS',
+              1: '@THAT',
+            }[index];
 
-          if (command === 'push') {
-            return [
-              register,
-              'D=M',
-              '@SP',
-              'A=M',
-              'M=D',
-              '@SP',
-              'M=M+1', ///////
-            ].join('\n');
+            if (command === 'push') {
+              return [
+                register,
+                'D=M',
+                '@SP',
+                'A=M',
+                'M=D',
+                '@SP',
+                'M=M+1', ///////
+              ].join('\n');
+            } else {
+              return [
+                '@SP',
+                'M=M-1',
+                'A=M',
+                'D=M',
+                register,
+                'M=D', ///////
+              ].join('\n');
+            }
           } else {
-            return [
-              '@SP',
-              'M=M-1',
-              'A=M',
-              'D=M',
-              register,
-              'M=D', ///////
-            ].join('\n');
+            throw new Error('Segment invalid: ' + segment);
           }
+        } else if (ARITHMETIC_BINARY[command]) {
+          return [
+            '@SP',
+            'M=M-1',
+            'A=M',
+            'D=M',
+            '@SP',
+            'M=M-1',
+            'A=M',
+            ARITHMETIC_BINARY[command],
+            '@SP',
+            'M=M+1',
+          ].join('\n');
+        } else if (ARITHMETIC_UNARY[command]) {
+          return [
+            '@SP',
+            'M=M-1',
+            'A=M',
+            ARITHMETIC_UNARY[command],
+            '@SP',
+            'M=M+1',
+          ].join('\n');
+        } else if (ARITHMETIC_COMPARE[command]) {
+          const [labelSymbolTrue, labelTrue] = allocateLabel('COMPARE_TRUE');
+          const [labelSymbolFalse, labelFalse] = allocateLabel('COMPARE_FALSE');
+          return [
+            '@SP',
+            'M=M-1',
+            'A=M',
+            'D=M',
+            '@SP',
+            'M=M-1',
+            'A=M',
+            'D=M-D',
+            labelSymbolTrue,
+            ARITHMETIC_COMPARE[command],
+            '@SP',
+            'A=M',
+            'M=0',
+            labelSymbolFalse,
+            '0;JMP',
+            labelTrue,
+            '@SP',
+            'A=M',
+            'M=-1',
+            labelFalse,
+            '@SP',
+            'M=M+1',
+          ].join('\n');
+        } else if (command === 'break') {
+          return 'BREAK';
+        } else if (command === 'goto') {
+          const [_, label] = parts;
+          return [
+            `@${currentFunction}.${label}`,
+            '0;JMP', //
+          ].join('\n');
+        } else if (command === 'label') {
+          const [_, label] = parts;
+          if (currentFunction === null) {
+            // throw new Error(
+            //   'label not in a function: ' + line + ':' + programName
+            // );
+          }
+          return `(${currentFunction}.${label})`;
+        } else if (command === 'if-goto') {
+          const [_, label] = parts;
+          return [
+            '@SP',
+            'M=M-1',
+            'A=M',
+            'D=M',
+            `@${currentFunction}.${label}`,
+            'D;JNE', //
+          ].join('\n');
+          return `(${programName}.${label})`;
+        } else if (command === 'call') {
+          const [_, funcName, nArgs = 0] = parts;
+          if (funcName === undefined) {
+            throw new Error('funcName must be defined: ' + line);
+          }
+          const labelName = `${programName}.$ret.${returnLabelCount}`;
+          returnLabelCount += 1;
+
+          return [
+            pushConstantSegment(`${labelName}`),
+            pushConstantSegment('LCL', { dereference: true }),
+            pushConstantSegment('ARG', { dereference: true }),
+            pushConstantSegment('THIS', { dereference: true }),
+            pushConstantSegment('THAT', { dereference: true }),
+
+            // ARG=SP-5-nArgs
+            '@SP',
+            'D=M',
+            '@5',
+            'D=D-A',
+            '@' + nArgs,
+            'D=D-A',
+            '@ARG',
+            'M=D',
+
+            // LCL=SP
+            '@SP',
+            'D=M',
+            '@LCL',
+            'M=D',
+
+            // go to function name
+            `@${funcName}`,
+            '0;JMP',
+
+            `(${labelName})`,
+          ].join('\n');
+        } else if (command === 'function') {
+          const [_, funcName, nArgs] = parts;
+          currentFunction = funcName;
+          return [
+            `(${funcName})`,
+            new Array(Number(nArgs)).fill(pushConstantSegment('0')).join('\n'),
+            //
+          ].join('\n');
+        } else if (command === 'return') {
+          const endFrame = '@R15';
+          const returnAddress = '@R14';
+          currentFunction = null;
+          return [
+            '@__RETURN',
+            '0;JMP', //
+          ].join('\n');
+        } else if (command === 'set') {
+          const [_, address, valueStr] = parts;
+          const value = Number(valueStr.replace(/[,;]/, ''));
+
+          let index;
+
+          if (
+            ['sp', 'local', 'argument', 'this', 'that'].indexOf(address) === -1
+          ) {
+            index = address.replace(/RAM\[(\d+)\]/, '$1');
+          } else {
+            index = {
+              sp: 'SP',
+              local: 'LCL',
+              argument: 'ARG',
+              this: 'THIS',
+              that: 'THAT',
+            }[address];
+          }
+          return [
+            value >= 0 ? `@${value}\nD=A` : `@0\nD=A\n@${-value}\nD=D-A`,
+            '@' + index,
+            'M=D',
+            //
+          ].join('\n');
         } else {
-          throw new Error('Segment invalid: ' + segment);
+          throw new Error(command + ' is invalid');
         }
-      } else if (ARITHMETIC_BINARY[command]) {
-        return [
-          '@SP',
-          'M=M-1',
-          'A=M',
-          'D=M',
-          '@SP',
-          'M=M-1',
-          'A=M',
-          ARITHMETIC_BINARY[command],
-          '@SP',
-          'M=M+1',
-        ].join('\n');
-      } else if (ARITHMETIC_UNARY[command]) {
-        return [
-          '@SP',
-          'M=M-1',
-          'A=M',
-          ARITHMETIC_UNARY[command],
-          '@SP',
-          'M=M+1',
-        ].join('\n');
-      } else if (ARITHMETIC_COMPARE[command]) {
-        const [labelSymbolTrue, labelTrue] = allocateLabel('COMPARE_TRUE');
-        const [labelSymbolFalse, labelFalse] = allocateLabel('COMPARE_FALSE');
-        return [
-          '@SP',
-          'M=M-1',
-          'A=M',
-          'D=M',
-          '@SP',
-          'M=M-1',
-          'A=M',
-          'D=M-D',
-          labelSymbolTrue,
-          ARITHMETIC_COMPARE[command],
-          '@SP',
-          'A=M',
-          'M=0',
-          labelSymbolFalse,
-          '0;JMP',
-          labelTrue,
-          '@SP',
-          'A=M',
-          'M=-1',
-          labelFalse,
-          '@SP',
-          'M=M+1',
-        ].join('\n');
-      } else if (command === 'break') {
-        return 'BREAK';
-      } else if (command === 'goto') {
-        const [_, label] = parts;
-        return [
-          `@${currentFunction}.${label}`,
-          '0;JMP', //
-        ].join('\n');
-      } else if (command === 'label') {
-        const [_, label] = parts;
-        if (currentFunction === null) {
-          // throw new Error(
-          //   'label not in a function: ' + line + ':' + programName
-          // );
-        }
-        return `(${currentFunction}.${label})`;
-      } else if (command === 'if-goto') {
-        const [_, label] = parts;
-        return [
-          '@SP',
-          'M=M-1',
-          'A=M',
-          'D=M',
-          `@${currentFunction}.${label}`,
-          'D;JNE', //
-        ].join('\n');
-        return `(${programName}.${label})`;
-      } else if (command === 'call') {
-        const [_, funcName, nArgs = 0] = parts;
-        if (funcName === undefined) {
-          throw new Error('funcName must be defined: ' + line);
-        }
-        const labelName = `${programName}.$ret.${returnLabelCount}`;
-        returnLabelCount += 1;
-
-        return [
-          pushConstantSegment(`${labelName}`),
-          pushConstantSegment('LCL', { dereference: true }),
-          pushConstantSegment('ARG', { dereference: true }),
-          pushConstantSegment('THIS', { dereference: true }),
-          pushConstantSegment('THAT', { dereference: true }),
-
-          // ARG=SP-5-nArgs
-          '@SP',
-          'D=M',
-          '@5',
-          'D=D-A',
-          '@' + nArgs,
-          'D=D-A',
-          '@ARG',
-          'M=D',
-
-          // LCL=SP
-          '@SP',
-          'D=M',
-          '@LCL',
-          'M=D',
-
-          // go to function name
-          `@${funcName}`,
-          '0;JMP',
-
-          `(${labelName})`,
-        ].join('\n');
-      } else if (command === 'function') {
-        const [_, funcName, nArgs] = parts;
-        currentFunction = funcName;
-        return [
-          `(${funcName})`,
-          new Array(Number(nArgs)).fill(pushConstantSegment('0')).join('\n'),
-          //
-        ].join('\n');
-      } else if (command === 'return') {
-        const endFrame = '@R15';
-        const returnAddress = '@R14';
-        currentFunction = null;
-        return [
-          // endFrame = LCL
-          '@LCL',
-          'D=M',
-          endFrame,
-          'M=D',
-
-          // return address = endFrame - 5
-          // (resue D=*(LCL) state)
-          '@5',
-          'D=D-A',
-          'A=D',
-          'D=M',
-          returnAddress,
-          'M=D',
-
-          // *ARG = pop()
-          '@SP',
-          'M=M-1',
-          'A=M',
-          'D=M',
-          '@ARG',
-          'A=M',
-          'M=D',
-
-          // SP = ARG + 1
-          // (reuse A = *(ARG) state)
-          'D=A+1',
-          '@SP',
-          'M=D',
-
-          // THAT=*(endFrame - 1)
-          endFrame,
-          'D=M-1',
-          'A=D',
-          'D=M',
-          '@THAT',
-          'M=D',
-
-          // THIS=*(endFrame - 2)
-          endFrame,
-          'D=M',
-          '@2',
-          'D=D-A',
-          'A=D',
-          'D=M',
-          '@THIS',
-          'M=D',
-
-          // ARG=*(endFrame - 3)
-          endFrame,
-          'D=M',
-          '@3',
-          'D=D-A',
-          'A=D',
-          'D=M',
-          '@ARG',
-          'M=D',
-
-          // LCL=*(endFrame - 4)
-          endFrame,
-          'D=M',
-          '@4',
-          'D=D-A',
-          'A=D',
-          'D=M',
-          '@LCL',
-          'M=D',
-
-          // goto returnAddress
-          returnAddress,
-          'A=M',
-          '0;JMP',
-        ].join('\n');
-      } else if (command === 'set') {
-        const [_, address, valueStr] = parts;
-        const value = Number(valueStr.replace(/[,;]/, ''));
-
-        let index;
-
-        if (
-          ['sp', 'local', 'argument', 'this', 'that'].indexOf(address) === -1
-        ) {
-          index = address.replace(/RAM\[(\d+)\]/, '$1');
-        } else {
-          index = {
-            sp: 'SP',
-            local: 'LCL',
-            argument: 'ARG',
-            this: 'THIS',
-            that: 'THAT',
-          }[address];
-        }
-        return [
-          value >= 0 ? `@${value}\nD=A` : `@0\nD=A\n@${-value}\nD=D-A`,
-          '@' + index,
-          'M=D',
-          //
-        ].join('\n');
-      } else {
-        throw new Error(command + ' is invalid');
-      }
-    })
-    .join('\n');
+      })
+      .join('\n') +
+    '\n' +
+    sharedCode()
+  );
 };
 
 function pushMemorySegment(segmentSymbol, index) {
@@ -450,7 +384,7 @@ function sharedCode() {
 
   return [
     // endFrame = LCL
-    '($RETURN$)',
+    '(__RETURN)',
     '@LCL',
     'D=M',
     endFrame,
