@@ -31,7 +31,7 @@ lt                     // checks if n<2
 if-goto IF_TRUE
 goto IF_FALSE
 label IF_TRUE          // if n<2, return n
-push argument 0        
+push argument 0
 return
 label IF_FALSE         // if n>=2, returns fib(n-2)+fib(n-1)
 push argument 0

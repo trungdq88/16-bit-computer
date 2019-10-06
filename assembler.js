@@ -70,7 +70,7 @@ function isNormalInteger(str) {
   return /^\+?(0|[1-9]\d*)$/.test(str);
 }
 
-exports.assembler = function(source) {
+exports.assembler = function(source, hack = false) {
   const assigned = {};
   let allocated = VARIABLE_MEMORY_OFFSET;
   const labels = {};
@@ -171,8 +171,11 @@ exports.assembler = function(source) {
         return result;
       }
     })
-    .filter(_ => _ !== null)
-    .map(_ => _.toString(16))
-    .join(' ');
-  return code;
+    .filter(_ => _ !== null);
+
+  if (hack) {
+    return code.map(_ => _.toString(2).padStart(16, '0')).join('\n');
+  } else {
+    return code.map(_ => _.toString(16)).join(' ');
+  }
 };
