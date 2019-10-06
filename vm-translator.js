@@ -195,11 +195,11 @@ exports.vmTranslator = function(source, programName) {
         ].join('\n');
       } else if (command === 'label') {
         const [_, label] = parts;
-        if (currentFunction === null) {
-          throw new Error(
-            'label not in a function: ' + line + ':' + programName
-          );
-        }
+        // if (currentFunction === null) {
+        //   throw new Error(
+        //     'label not in a function: ' + line + ':' + programName
+        //   );
+        // }
         return `(${currentFunction}.${label})`;
       } else if (command === 'if-goto') {
         const [_, label] = parts;
