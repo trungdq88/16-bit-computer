@@ -119,38 +119,5 @@ describe('assembler', () => {
         0;JMP
     `)
     ).toBe('4000 ec10 82 e090 10 e308 11 fdd8 10 fc20 e308 6 ea87');
-
-    console.log(
-      assembler(`
-    
-   @0
-   D=M
-   @INFINITE_LOOP
-   D;JLE 
-   @counter
-   M=D
-   @SCREEN
-   D=A
-   @address
-   M=D
-(LOOP)
-   @address
-   A=M
-   M=-1
-   @address
-   D=M
-   @32
-   D=D+A
-   @address
-   M=D
-   @counter
-   MD=M-1
-   @LOOP
-   D;JGT
-(INFINITE_LOOP)
-   @INFINITE_LOOP
-   0;JMP
-    `)
-    );
   });
 });

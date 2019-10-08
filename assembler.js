@@ -1,3 +1,5 @@
+const { parseParts } = require('./parse-parts.js');
+
 const COMP_MAP = {
   '0': 0b0101010,
   '1': 0b0111111,
@@ -70,7 +72,10 @@ function isNormalInteger(str) {
   return /^\+?(0|[1-9]\d*)$/.test(str);
 }
 
-exports.assembler = function(source, hack = false) {
+exports.assembler = function(
+  source,
+  { renderUnlabeled = false, renderHack = false } = {}
+) {
   const assigned = {};
   let allocated = VARIABLE_MEMORY_OFFSET;
   const labels = {};
@@ -96,57 +101,43 @@ exports.assembler = function(source, hack = false) {
     }
   });
 
-  const code = lines
+  const unlabeled = lines
     .map((line, index) => {
       if (line[0] === '@') {
         const symbol = line.slice(1, line.length);
         if (isNormalInteger(symbol)) {
-          return parseInt(symbol, 10);
+          return `@${parseInt(symbol, 10)}`;
         } else if (PREDEFINED_SYMBOLS[symbol] !== undefined) {
-          return PREDEFINED_SYMBOLS[symbol];
+          return `@${PREDEFINED_SYMBOLS[symbol]}`;
         } else if (assigned[symbol] !== undefined) {
-          return assigned[symbol];
+          return `@${assigned[symbol]}`;
         } else if (labels[symbol] !== undefined) {
-          if (labels[symbol].toString(16) === '97d7') {
-            console.log(Object.values(labels));
-            throw new Error('---');
-          }
-          return labels[symbol];
+          return `@${labels[symbol]}`;
         } else {
           assigned[symbol] = allocated;
           allocated += 1;
-          return assigned[symbol];
+          return `@${assigned[symbol]}`;
         }
       } else if (line[0] === '(') {
         return null;
+      }
+      return line;
+    })
+    .filter(_ => _ !== null);
+
+  if (renderUnlabeled) {
+    return unlabeled;
+  }
+
+  const code = unlabeled
+    .map((line, index) => {
+      if (line[0] === '@') {
+        const symbol = line.slice(1, line.length);
+        return parseInt(symbol, 10);
       } else if (line === 'BREAK') {
         return 0b100 << 13;
       } else {
-        const parts = {
-          dest: '',
-          comp: '',
-          jump: '',
-        };
-
-        let now = 'dest';
-
-        for (let i = 0; i < line.length; i++) {
-          if (line[i] === '=') {
-            now = 'comp';
-            continue;
-          }
-          if (line[i] === ';') {
-            now = 'jump';
-            continue;
-          }
-          parts[now] += line[i];
-        }
-
-        if (parts.comp === '') {
-          const t = parts.dest;
-          parts.dest = '';
-          parts.comp = t;
-        }
+        const parts = parseParts(line);
 
         let destBits = 0b000;
         if (parts.dest.indexOf('A') > -1) destBits |= 0b100;
@@ -173,7 +164,7 @@ exports.assembler = function(source, hack = false) {
     })
     .filter(_ => _ !== null);
 
-  if (hack) {
+  if (renderHack) {
     return code.map(_ => _.toString(2).padStart(16, '0')).join('\n');
   } else {
     return code.map(_ => _.toString(16)).join(' ');

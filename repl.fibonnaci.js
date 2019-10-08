@@ -13,7 +13,7 @@ ${c(
   vmTranslator(
     `
 function Sys.init 0
-push constant 5
+push constant 11
 call Main.fibonacci 1   // computes the 4'th fibonacci element
 label WHILE
     break
