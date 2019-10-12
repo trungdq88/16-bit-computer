@@ -13,13 +13,16 @@ let c = 0;
 
 exports.cpuEmulator = function(program, { returnClock = false } = {}) {
   let distribution = {};
+  let counter = 0;
+  let clock = 0;
+
   const state = {
     D: 0,
     A: 0,
     RAM: [],
     M(value) {
       if (this.A < 0 || this.A > 24576) {
-        throw new Error('Address out of range: ' + this.A);
+        throw new Error(`Address out of range: ${this.A} (line ${counter}) `);
       }
       if (value === undefined) {
         return this.RAM[this.A];
@@ -28,9 +31,6 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
       }
     },
   };
-
-  let counter = 0;
-  let clock = 0;
 
   while (true) {
     clock += 1;

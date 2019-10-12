@@ -47,13 +47,15 @@ exports.vmTranslator = function(source, programName) {
 
   let returnLabelCount = 1;
 
+  const lines = source
+    .trim()
+    .split('\n')
+    .map(_ => _.replace(/\/\/.*?$/, ''))
+    .map(_ => _.trim())
+    .filter(Boolean);
+
   return (
-    source
-      .trim()
-      .split('\n')
-      .map(_ => _.replace(/\/\/.*?$/, ''))
-      .map(_ => _.trim())
-      .filter(Boolean)
+    lines
       .map(line => {
         const parts = line.split(' ');
         const [command, segment, index] = parts;
