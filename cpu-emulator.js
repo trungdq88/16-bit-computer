@@ -8,15 +8,19 @@ function getSigned(binStr) {
   return parseInt(binStr, 2) >> 0;
 }
 
-const MAX = 100000;
+const MAX = 1000000;
 let c = 0;
 
-exports.cpuEmulator = function(program) {
+exports.cpuEmulator = function(program, { returnClock = false } = {}) {
+  let distribution = {};
   const state = {
     D: 0,
     A: 0,
     RAM: [],
     M(value) {
+      if (this.A < 0 || this.A > 24576) {
+        throw new Error('Address out of range: ' + this.A);
+      }
       if (value === undefined) {
         return this.RAM[this.A];
       } else {
@@ -26,17 +30,21 @@ exports.cpuEmulator = function(program) {
   };
 
   let counter = 0;
+  let clock = 0;
 
   while (true) {
+    clock += 1;
+    distribution[counter] = distribution[counter] || 0;
+    distribution[counter] += 1;
+
     if (c++ > MAX) {
+      console.log(distribution);
       throw new Error('max iteration exceeded');
     }
 
     const line = program[counter];
 
-    if (!line) break;
-
-    // console.log(line);
+    if (!line || !line.trim()) break;
 
     if (line === 'BREAK') {
       // console.log('BREAK');
@@ -79,7 +87,7 @@ exports.cpuEmulator = function(program) {
 
       const handler = compHandler[comp];
       if (!handler) {
-        throw new Error('Invalid comp: ' + comp + ', line: ' + line);
+        throw new Error('Invalid comp: ' + comp + ', line: "' + line + '"');
       }
       const result = handler();
       if (dest.indexOf('A') > -1) state.A = result;
@@ -134,5 +142,11 @@ exports.cpuEmulator = function(program) {
     counter += 1;
   }
 
+  if (returnClock) {
+    return {
+      ...state,
+      clock,
+    };
+  }
   return state;
 };

@@ -79,49 +79,55 @@ exports.assembler = function(
   const assigned = {};
   let allocated = VARIABLE_MEMORY_OFFSET;
   const labels = {};
+  const comments = {};
 
   const lines = source
     .trim()
     .split('\n')
-    .map(_ => _.replace(/\/\/.*?$/, ''))
+    .map((_, index) => {
+      if (_.indexOf('//') > -1) {
+        comments[index] = _.split('//').slice(-1)[0];
+        return _.replace(/\/\/.*?$/, '');
+      }
+      return _;
+    })
     .map(_ => _.trim())
     .filter(Boolean);
 
   lines.forEach((line, index) => {
-    if (line[0] === '(') {
-      const label = line.replace(/[\(\)]/g, '');
-      if (labels[label] !== undefined) {
-        throw new Error('duplicated label ' + label);
-      }
-      labels[label] = index - Object.keys(labels).length;
-      if (labels[label] >= 2 ** 15) {
-        throw new Error('Max label line index exceeded! ' + index);
-      }
-      return null;
+    if (line[0] !== '(') return;
+
+    const label = line.replace(/\(|\).*$/g, '');
+    if (labels[label] !== undefined) {
+      throw new Error('duplicated label ' + label);
     }
+    labels[label] = index - Object.keys(labels).length;
+    if (labels[label] >= 2 ** 15) {
+      throw new Error('Max label line index exceeded! ' + index);
+    }
+    return null;
   });
 
   const unlabeled = lines
     .map((line, index) => {
-      if (line[0] === '@') {
-        const symbol = line.slice(1, line.length);
-        if (isNormalInteger(symbol)) {
-          return `@${parseInt(symbol, 10)}`;
-        } else if (PREDEFINED_SYMBOLS[symbol] !== undefined) {
-          return `@${PREDEFINED_SYMBOLS[symbol]}`;
-        } else if (assigned[symbol] !== undefined) {
-          return `@${assigned[symbol]}`;
-        } else if (labels[symbol] !== undefined) {
-          return `@${labels[symbol]}`;
-        } else {
-          assigned[symbol] = allocated;
-          allocated += 1;
-          return `@${assigned[symbol]}`;
-        }
-      } else if (line[0] === '(') {
-        return null;
+      if (line[0] === '(') return null;
+
+      if (line[0] !== '@') return line;
+
+      const symbol = line.slice(1, line.length);
+      if (isNormalInteger(symbol)) {
+        return `@${parseInt(symbol, 10)}`;
+      } else if (PREDEFINED_SYMBOLS[symbol] !== undefined) {
+        return `@${PREDEFINED_SYMBOLS[symbol]}`;
+      } else if (assigned[symbol] !== undefined) {
+        return `@${assigned[symbol]}`;
+      } else if (labels[symbol] !== undefined) {
+        return `@${labels[symbol]}`;
+      } else {
+        assigned[symbol] = allocated;
+        allocated += 1;
+        return `@${assigned[symbol]}`;
       }
-      return line;
     })
     .filter(_ => _ !== null);
 

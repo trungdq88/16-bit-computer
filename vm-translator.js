@@ -226,7 +226,7 @@ exports.vmTranslator = function(source, programName) {
 
           return [
             '// Set function address',
-            `@${funcName}`,
+            `@${funcName} // call ${funcName}`,
             'D=A',
             functionAddress,
             'M=D',
