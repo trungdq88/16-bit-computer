@@ -4,23 +4,25 @@ const { cpuEmulator } = require('../cpu-emulator.js');
 const { Memory } = require('./os/memory.js');
 const { ArrayM } = require('./os/array.js');
 const { Init } = require('./os/init.js');
+const { MathM } = require('./os/math.js');
 
 describe('end to end tests 2', () => {
-  it('array test', () => {
+  it('math test', () => {
     const state = cpuEmulator(
       assembler(
         `
 ${Init}
 ${Memory}
 ${ArrayM}
+${MathM}
 
 ${vmTranslator(
   `
 function Sys.init 0
 call Memory.init 0
 pop temp 0
-// call Math.init 0
-// pop temp 0
+call Math.init 0
+pop temp 0
 // call Screen.init 0
 // pop temp 0
 // call Output.init 0
@@ -108,113 +110,44 @@ return
 
 ${vmTranslator(
   `
-function Main.main 4
+function Main.main 1
 push constant 8000
 pop local 0
-push constant 3
-call Array.new 1
-pop local 1
-push constant 2
-push local 1
-add
-push constant 222
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push constant 0
 push local 0
 add
 push constant 2
-push local 1
-add
-pop pointer 1
-push that 0
+push constant 3
+call Math.multiply 2
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push constant 3
-call Array.new 1
-pop local 2
 push constant 1
-push local 2
+push local 0
 add
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 30
+neg
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 2
-push local 1
+push local 0
+add
+push constant 1
+push local 0
 add
 pop pointer 1
 push that 0
 push constant 100
-sub
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 1
-push local 0
-add
-push constant 1
-push local 2
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 500
-call Array.new 1
-pop local 3
-push constant 499
-push local 3
-add
-push constant 2
-push local 1
-add
-pop pointer 1
-push that 0
-push constant 1
-push local 2
-add
-pop pointer 1
-push that 0
-sub
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push constant 2
-push local 0
-add
-push constant 499
-push local 3
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 1
-call Array.dispose 1
-pop temp 0
-push local 2
-call Array.dispose 1
-pop temp 0
-push constant 3
-call Array.new 1
-pop local 2
-push constant 0
-push local 2
-add
-push constant 499
-push local 3
-add
-pop pointer 1
-push that 0
-push constant 90
-sub
+call Math.multiply 2
 pop temp 0
 pop pointer 1
 push temp 0
@@ -222,21 +155,121 @@ pop that 0
 push constant 3
 push local 0
 add
-push constant 0
-push local 2
+push constant 1
+push constant 2
+push local 0
 add
 pop pointer 1
 push that 0
+call Math.multiply 2
 pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 3
-call Array.dispose 1
+push constant 4
+push local 0
+add
+push constant 3
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 0
+call Math.multiply 2
 pop temp 0
-push local 2
-call Array.dispose 1
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push local 0
+add
+push constant 9
+push constant 3
+call Math.divide 2
 pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push local 0
+add
+push constant 18000
+neg
+push constant 6
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push local 0
+add
+push constant 32766
+push constant 32767
+neg
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 8
+push local 0
+add
+push constant 9
+call Math.sqrt 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 9
+push local 0
+add
+push constant 32767
+call Math.sqrt 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 10
+push local 0
+add
+push constant 345
+push constant 123
+call Math.min 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 11
+push local 0
+add
+push constant 123
+push constant 345
+neg
+call Math.max 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 12
+push local 0
+add
+push constant 27
+call Math.abs 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 13
+push local 0
+add
+push constant 32767
+neg
+call Math.abs 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
 push constant 0
 return
   `,
@@ -249,9 +282,21 @@ ${sharedCode()}
         { renderUnlabeled: true }
       )
     );
-    expect(state.RAM[8000]).toBe(222);
-    expect(state.RAM[8001]).toBe(122);
-    expect(state.RAM[8002]).toBe(100);
-    expect(state.RAM[8003]).toBe(10);
+    expect(state.RAM.slice(8000, 8014)).toEqual([
+      6,
+      -180,
+      -18000,
+      -18000,
+      0,
+      3,
+      -3000,
+      -0,
+      3,
+      181,
+      123,
+      123,
+      27,
+      32767,
+    ]);
   });
 });

@@ -38,7 +38,6 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
     distribution[counter] += 1;
 
     if (c++ > MAX) {
-      console.log(distribution);
       throw new Error('max iteration exceeded');
     }
 
@@ -142,6 +141,7 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
     counter += 1;
   }
 
+  // console.log({ clock });
   if (returnClock) {
     return {
       ...state,

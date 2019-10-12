@@ -6,7 +6,7 @@ const { ArrayM } = require('./os/array.js');
 const { Init } = require('./os/init.js');
 
 describe('end to end tests 2', () => {
-  it('array test', () => {
+  it('memory test', () => {
     const state = cpuEmulator(
       assembler(
         `
@@ -110,7 +110,18 @@ ${vmTranslator(
   `
 function Main.main 4
 push constant 8000
+push constant 333
+call Memory.poke 2
+pop temp 0
+push constant 8000
+call Memory.peek 1
 pop local 0
+push constant 8001
+push local 0
+push constant 1
+add
+call Memory.poke 2
+pop temp 0
 push constant 3
 call Array.new 1
 pop local 1
@@ -122,18 +133,14 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push constant 0
-push local 0
-add
+push constant 8002
 push constant 2
 push local 1
 add
 pop pointer 1
 push that 0
+call Memory.poke 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push constant 3
 call Array.new 1
 pop local 2
@@ -151,18 +158,14 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push constant 1
-push local 0
-add
+push constant 8003
 push constant 1
 push local 2
 add
 pop pointer 1
 push that 0
+call Memory.poke 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push constant 500
 call Array.new 1
 pop local 3
@@ -184,18 +187,14 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push constant 2
-push local 0
-add
+push constant 8004
 push constant 499
 push local 3
 add
 pop pointer 1
 push that 0
+call Memory.poke 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push local 1
 call Array.dispose 1
 pop temp 0
@@ -219,18 +218,14 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push constant 3
-push local 0
-add
+push constant 8005
 push constant 0
 push local 2
 add
 pop pointer 1
 push that 0
+call Memory.poke 2
 pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
 push local 3
 call Array.dispose 1
 pop temp 0
@@ -249,9 +244,6 @@ ${sharedCode()}
         { renderUnlabeled: true }
       )
     );
-    expect(state.RAM[8000]).toBe(222);
-    expect(state.RAM[8001]).toBe(122);
-    expect(state.RAM[8002]).toBe(100);
-    expect(state.RAM[8003]).toBe(10);
+    expect(state.RAM.slice(8000, 8006)).toEqual([333, 334, 222, 122, 100, 10]);
   });
 });
