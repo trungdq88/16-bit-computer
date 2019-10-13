@@ -6595,21 +6595,31 @@ ea87
     </appear>
     <wire from="(940,520)" to="(990,520)"/>
     <wire from="(1020,530)" to="(1070,530)"/>
+    <wire from="(750,440)" to="(750,450)"/>
+    <wire from="(740,440)" to="(740,450)"/>
+    <wire from="(770,440)" to="(770,450)"/>
+    <wire from="(760,440)" to="(760,450)"/>
     <wire from="(580,260)" to="(580,270)"/>
     <wire from="(1000,550)" to="(1000,560)"/>
+    <wire from="(780,440)" to="(780,450)"/>
+    <wire from="(810,440)" to="(810,450)"/>
+    <wire from="(800,440)" to="(800,450)"/>
+    <wire from="(790,440)" to="(790,450)"/>
     <wire from="(490,320)" to="(540,320)"/>
     <wire from="(500,340)" to="(500,350)"/>
     <wire from="(380,220)" to="(380,230)"/>
+    <wire from="(730,390)" to="(730,420)"/>
     <wire from="(950,540)" to="(990,540)"/>
     <wire from="(430,230)" to="(430,260)"/>
     <wire from="(1000,590)" to="(1000,610)"/>
     <wire from="(450,210)" to="(490,210)"/>
+    <wire from="(710,290)" to="(710,310)"/>
+    <wire from="(700,290)" to="(700,310)"/>
     <wire from="(500,340)" to="(540,340)"/>
     <wire from="(730,290)" to="(730,310)"/>
     <wire from="(720,290)" to="(720,310)"/>
     <wire from="(740,290)" to="(740,310)"/>
     <wire from="(590,420)" to="(590,460)"/>
-    <wire from="(730,390)" to="(730,430)"/>
     <wire from="(380,220)" to="(410,220)"/>
     <wire from="(730,390)" to="(750,390)"/>
     <wire from="(490,210)" to="(490,320)"/>
@@ -6622,7 +6632,7 @@ ea87
     <wire from="(750,330)" to="(750,390)"/>
     <wire from="(1000,610)" to="(1010,610)"/>
     <wire from="(590,330)" to="(590,380)"/>
-    <wire from="(730,430)" to="(740,430)"/>
+    <wire from="(730,420)" to="(740,420)"/>
     <wire from="(580,330)" to="(590,330)"/>
     <comp lib="0" loc="(220,270)" name="Tunnel">
       <a name="label" val="ENABLE"/>
@@ -6632,21 +6642,10 @@ ea87
       <a name="fanout" val="32"/>
       <a name="incoming" val="32"/>
     </comp>
-    <comp lib="0" loc="(1070,530)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Pane Address"/>
-      <a name="labelloc" val="east"/>
-    </comp>
     <comp lib="0" loc="(500,350)" name="Constant">
       <a name="facing" val="north"/>
       <a name="width" val="16"/>
       <a name="value" val="0x10"/>
-    </comp>
-    <comp lib="0" loc="(950,540)" name="Pull Resistor">
-      <a name="facing" val="east"/>
     </comp>
     <comp lib="0" loc="(1010,610)" name="Tunnel">
       <a name="label" val="ENABLE"/>
@@ -6661,6 +6660,53 @@ ea87
       <a name="label" val="Pane Local Address"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="6" loc="(1079,385)" name="Text">
+      <a name="text" val="This decoder works with maximum 32 columns, but currently only use 8 columns as 32 is too big for logism"/>
+    </comp>
+    <comp lib="6" loc="(379,263)" name="Text">
+      <a name="text" val="Screen width"/>
+    </comp>
+    <comp lib="1" loc="(1000,560)" name="NOT Gate">
+      <a name="facing" val="north"/>
+    </comp>
+    <comp lib="2" loc="(740,420)" name="Decoder">
+      <a name="facing" val="south"/>
+      <a name="select" val="5"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="2" loc="(590,460)" name="Decoder">
+      <a name="selloc" val="tr"/>
+      <a name="select" val="2"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="0" loc="(560,380)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+      <a name="appear" val="right"/>
+    </comp>
+    <comp lib="0" loc="(380,230)" name="Constant">
+      <a name="facing" val="north"/>
+      <a name="width" val="16"/>
+      <a name="value" val="0x20"/>
+    </comp>
+    <comp loc="(740,450)" name="Pane Address Mapper"/>
+    <comp lib="0" loc="(260,200)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Address"/>
+    </comp>
+    <comp lib="0" loc="(1070,530)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Pane Address"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(950,540)" name="Pull Resistor">
+      <a name="facing" val="east"/>
+    </comp>
     <comp lib="0" loc="(200,270)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="Enable"/>
@@ -6671,17 +6717,6 @@ ea87
     <comp lib="6" loc="(498,378)" name="Text">
       <a name="text" val="Panel height (fixed at 16)"/>
     </comp>
-    <comp lib="6" loc="(379,263)" name="Text">
-      <a name="text" val="Screen width"/>
-    </comp>
-    <comp lib="2" loc="(740,430)" name="Decoder">
-      <a name="facing" val="south"/>
-      <a name="select" val="3"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="1" loc="(1000,560)" name="NOT Gate">
-      <a name="facing" val="north"/>
-    </comp>
     <comp lib="6" loc="(470,49)" name="Text">
       <a name="text" val="Decode RAM address into Pane Address (where the pane is located) and Pane Local Address (which line of the pane to update)"/>
     </comp>
@@ -6689,40 +6724,18 @@ ea87
       <a name="width" val="32"/>
       <a name="enable" val="false"/>
     </comp>
-    <comp lib="2" loc="(590,460)" name="Decoder">
-      <a name="selloc" val="tr"/>
-      <a name="select" val="2"/>
-      <a name="enable" val="false"/>
-    </comp>
     <comp lib="0" loc="(580,270)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
-    <comp lib="0" loc="(560,380)" name="Splitter">
-      <a name="facing" val="south"/>
-      <a name="fanout" val="16"/>
-      <a name="incoming" val="16"/>
-      <a name="appear" val="right"/>
-    </comp>
     <comp lib="0" loc="(560,420)" name="Splitter">
       <a name="facing" val="north"/>
     </comp>
-    <comp lib="0" loc="(380,230)" name="Constant">
-      <a name="facing" val="north"/>
-      <a name="width" val="16"/>
-      <a name="value" val="0x20"/>
-    </comp>
-    <comp loc="(740,450)" name="Pane Address Mapper"/>
     <comp lib="0" loc="(750,330)" name="Splitter">
       <a name="facing" val="north"/>
-      <a name="fanout" val="3"/>
-      <a name="incoming" val="3"/>
-    </comp>
-    <comp lib="0" loc="(260,200)" name="Pin">
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Address"/>
+      <a name="fanout" val="5"/>
+      <a name="incoming" val="5"/>
     </comp>
   </circuit>
   <circuit name="SR Latch(old)">
