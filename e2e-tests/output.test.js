@@ -115,9 +115,29 @@ return
 ${vmTranslator(
   `
 function Main.main 0
-push constant 1
+push constant 11
 call String.new 1
+push constant 72
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
 push constant 84
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 33
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
@@ -133,30 +153,79 @@ ${sharedCode()}
         { renderUnlabeled: true }
       )
     );
-    // Print a letter "T" to screen
-    // Took 6,070,459 clock cycles
+    // Print "Hello Tony!" to screen
+    // Took 6,129,929 clock cycles (about 6,000,000 cycles are for initialize
+    // the letters pixel map
     expect(state.RAM.slice(16384, 24576)).toEqual([
       ...new Array(32).fill(undefined),
-      ...new Array(1).fill(16447),
-      ...new Array(31).fill(undefined),
-      ...new Array(1).fill(16447),
-      ...new Array(31).fill(undefined),
-      ...new Array(1).fill(16429),
-      ...new Array(31).fill(undefined),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(3598),
+      ...new Array(1).fill(0),
+      ...new Array(1).fill(63),
+      ...new Array(1).fill(0),
       ...new Array(1).fill(16396),
-      ...new Array(31).fill(undefined),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(0),
+      ...new Array(1).fill(63),
+      ...new Array(1).fill(0),
+      ...new Array(1).fill(16414),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(0),
+      ...new Array(1).fill(45),
+      ...new Array(1).fill(0),
+      ...new Array(1).fill(16414),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(7731),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(30),
+      ...new Array(1).fill(7692),
+      ...new Array(1).fill(13085),
+      ...new Array(1).fill(16414),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(13119),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(13068),
+      ...new Array(1).fill(13107),
       ...new Array(1).fill(16396),
-      ...new Array(31).fill(undefined),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(16179),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(13068),
+      ...new Array(1).fill(13107),
       ...new Array(1).fill(16396),
-      ...new Array(31).fill(undefined),
-      ...new Array(1).fill(16396),
-      ...new Array(31).fill(undefined),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(819),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(13068),
+      ...new Array(1).fill(15923),
+      ...new Array(1).fill(16384),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(13107),
+      ...new Array(1).fill(3084),
+      ...new Array(1).fill(51),
+      ...new Array(1).fill(13068),
+      ...new Array(1).fill(12339),
       ...new Array(1).fill(16652),
-      ...new Array(31).fill(undefined),
-      ...new Array(1).fill(16670),
-      ...new Array(31).fill(undefined),
+      ...new Array(26).fill(undefined),
+      ...new Array(1).fill(7731),
+      ...new Array(1).fill(7710),
+      ...new Array(1).fill(30),
+      ...new Array(1).fill(7710),
+      ...new Array(1).fill(6195),
+      ...new Array(1).fill(16652),
+      ...new Array(26).fill(undefined),
+      ...new Array(4).fill(0),
+      ...new Array(1).fill(3840),
       ...new Array(1).fill(16640),
-      ...new Array(31).fill(undefined),
+      ...new Array(26).fill(undefined),
+      ...new Array(5).fill(0),
       ...new Array(1).fill(16640),
     ]);
   });
