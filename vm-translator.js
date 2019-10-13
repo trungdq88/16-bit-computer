@@ -81,7 +81,7 @@ exports.vmTranslator = function(source, programName) {
             const register = '@R' + (indexNumber + TEMP_ADDRESS);
             if (command === 'push') {
               return [
-                register,
+                `${register} // ${line}`,
                 'D=M', // copy temp[index] value to D
                 '@SP',
                 'A=M',
@@ -91,7 +91,7 @@ exports.vmTranslator = function(source, programName) {
               ].join('\n');
             } else {
               return [
-                '@SP',
+                `@SP // ${line}`,
                 'M=M-1',
                 'A=M',
                 'D=M', // copy stack.pop() to D
@@ -103,7 +103,7 @@ exports.vmTranslator = function(source, programName) {
             const register = `@${programName}.${index}`;
             if (command === 'push') {
               return [
-                register,
+                `${register} // ${line}`,
                 'D=M', // copy static[index] to D
                 '@SP',
                 'A=M',
@@ -113,7 +113,7 @@ exports.vmTranslator = function(source, programName) {
               ].join('\n');
             } else {
               return [
-                '@SP',
+                `@SP // ${line}`,
                 'M=M-1',
                 'A=M',
                 'D=M', // D = stack.pop()
@@ -129,7 +129,7 @@ exports.vmTranslator = function(source, programName) {
 
             if (command === 'push') {
               return [
-                register,
+                `${register} // ${line}`,
                 'D=M',
                 '@SP',
                 'A=M',
@@ -139,7 +139,7 @@ exports.vmTranslator = function(source, programName) {
               ].join('\n');
             } else {
               return [
-                '@SP',
+                `@SP // ${line}`,
                 'M=M-1',
                 'A=M',
                 'D=M',
@@ -152,7 +152,7 @@ exports.vmTranslator = function(source, programName) {
           }
         } else if (ARITHMETIC_BINARY[command]) {
           return [
-            '@SP',
+            `@SP // ${line}`,
             'M=M-1',
             'A=M',
             'D=M',
@@ -165,7 +165,7 @@ exports.vmTranslator = function(source, programName) {
           ].join('\n');
         } else if (ARITHMETIC_UNARY[command]) {
           return [
-            '@SP',
+            `@SP // ${line}`,
             'M=M-1',
             'A=M',
             ARITHMETIC_UNARY[command],
@@ -176,7 +176,7 @@ exports.vmTranslator = function(source, programName) {
           const [labelSymbol, label] = allocateLabel('COMPARE_RETURN');
           return [
             '// Set compare return address to R15',
-            labelSymbol,
+            `${labelSymbol} // ${line}`,
             'D=A',
             '@R15',
             'M=D',
@@ -192,7 +192,7 @@ exports.vmTranslator = function(source, programName) {
         } else if (command === 'goto') {
           const [_, label] = parts;
           return [
-            `@${currentFunction}.${label}`,
+            `@${currentFunction}.${label} // ${line}`,
             '0;JMP', //
           ].join('\n');
         } else if (command === 'label') {
@@ -206,7 +206,7 @@ exports.vmTranslator = function(source, programName) {
         } else if (command === 'if-goto') {
           const [_, label] = parts;
           return [
-            '@SP',
+            `@SP // ${line}`,
             'M=M-1',
             'A=M',
             'D=M',
@@ -228,7 +228,7 @@ exports.vmTranslator = function(source, programName) {
 
           return [
             '// Set function address',
-            `@${funcName} // call ${funcName}`,
+            `@${funcName} // ${line}`,
             'D=A',
             functionAddress,
             'M=D',
@@ -254,7 +254,7 @@ exports.vmTranslator = function(source, programName) {
           const [_, funcName, nArgs] = parts;
           currentFunction = funcName;
           return [
-            `(${funcName})`,
+            `(${funcName}) // ${line}`,
             new Array(Number(nArgs)).fill(pushConstantSegment('0')).join('\n'),
             //
           ].join('\n');
@@ -286,7 +286,9 @@ exports.vmTranslator = function(source, programName) {
             }[address];
           }
           return [
-            value >= 0 ? `@${value}\nD=A` : `@0\nD=A\n@${-value}\nD=D-A`,
+            `${
+              value >= 0 ? `@${value}\nD=A` : `@0\nD=A\n@${-value}\nD=D-A`
+            } // ${line}`,
             '@' + index,
             'M=D',
             //
@@ -302,7 +304,7 @@ exports.vmTranslator = function(source, programName) {
 function pushMemorySegment(segmentSymbol, index) {
   return [
     // move to segment[index]
-    segmentSymbol,
+    `${segmentSymbol} // push ${segmentSymbol} ${index}`,
     'D=M',
     '@' + index,
     'D=D+A',
@@ -327,7 +329,7 @@ function pushMemorySegment(segmentSymbol, index) {
 function popMemorySegment(segmentSymbol, index) {
   return [
     // load address of segment[index] to D
-    segmentSymbol,
+    `${segmentSymbol} // pop ${segmentSymbol} ${index}`,
     'D=M',
     '@' + index,
     'D=D+A',
@@ -355,7 +357,9 @@ function popMemorySegment(segmentSymbol, index) {
 
 function pushConstantSegment(value, { dereference } = {}) {
   return [
-    value === undefined ? '' : '@' + value,
+    `${value === undefined ? '' : '@' + value} // push ${
+      dereference ? 'value' : 'constant'
+    }`,
     dereference ? 'D=M' : 'D=A',
     '@SP',
     'A=M',
@@ -378,7 +382,7 @@ function sharedCodeReturn() {
 
   return [
     // endFrame = LCL
-    '(__RETURN)',
+    '(__RETURN) // shared return',
     '@LCL',
     'D=M',
     endFrame,
@@ -458,7 +462,7 @@ function sharedCodeCall() {
   const nArgsAddress = '@R14';
 
   return [
-    '(__CALL)',
+    '(__CALL) // shared call',
     pushConstantSegment('R13', { dereference: true }),
     pushConstantSegment('LCL', { dereference: true }),
     pushConstantSegment('ARG', { dereference: true }),
@@ -492,7 +496,7 @@ function sharedCodeCompare() {
   return Object.keys(ARITHMETIC_COMPARE)
     .map(command => {
       return [
-        `(__COMPARE_${command.toUpperCase()})`,
+        `(__COMPARE_${command.toUpperCase()}) // Shared compare`,
         '@SP',
         'M=M-1',
         'A=M',

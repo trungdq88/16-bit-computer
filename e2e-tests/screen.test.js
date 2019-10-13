@@ -9,7 +9,7 @@ const { Screen } = require('./os/screen.js');
 const { Init } = require('./os/init.js');
 
 describe('end to end tests 2', () => {
-  it.only('screen test', () => {
+  it('screen test', () => {
     const state = cpuEmulator(
       assembler(
         `
@@ -27,8 +27,8 @@ call Memory.init 0
 pop temp 0
 call Math.init 0
 pop temp 0
-// call Screen.init 0
-// pop temp 0
+call Screen.init 0
+pop temp 0
 // call Output.init 0
 // pop temp 0
 // call Keyboard.init 0
@@ -115,106 +115,10 @@ return
 ${vmTranslator(
   `
 function Main.main 0
-push constant 0
-push constant 220
-push constant 511
-push constant 220
-call Screen.drawLine 4
-pop temp 0
-push constant 280
-push constant 90
-push constant 410
-push constant 220
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push constant 350
-push constant 120
-push constant 390
-push constant 219
-call Screen.drawRectangle 4
-pop temp 0
-push constant 292
-push constant 120
-push constant 332
-push constant 150
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push constant 360
-push constant 170
-push constant 3
+push constant 10
+push constant 10
+push constant 10
 call Screen.drawCircle 3
-pop temp 0
-push constant 280
-push constant 90
-push constant 345
-push constant 35
-call Screen.drawLine 4
-pop temp 0
-push constant 345
-push constant 35
-push constant 410
-push constant 90
-call Screen.drawLine 4
-pop temp 0
-push constant 140
-push constant 60
-push constant 30
-call Screen.drawCircle 3
-pop temp 0
-push constant 140
-push constant 26
-push constant 140
-push constant 6
-call Screen.drawLine 4
-pop temp 0
-push constant 163
-push constant 35
-push constant 178
-push constant 20
-call Screen.drawLine 4
-pop temp 0
-push constant 174
-push constant 60
-push constant 194
-push constant 60
-call Screen.drawLine 4
-pop temp 0
-push constant 163
-push constant 85
-push constant 178
-push constant 100
-call Screen.drawLine 4
-pop temp 0
-push constant 140
-push constant 94
-push constant 140
-push constant 114
-call Screen.drawLine 4
-pop temp 0
-push constant 117
-push constant 85
-push constant 102
-push constant 100
-call Screen.drawLine 4
-pop temp 0
-push constant 106
-push constant 60
-push constant 86
-push constant 60
-call Screen.drawLine 4
-pop temp 0
-push constant 117
-push constant 35
-push constant 102
-push constant 20
-call Screen.drawLine 4
 pop temp 0
 push constant 0
 return
@@ -228,6 +132,72 @@ ${sharedCode()}
         { renderUnlabeled: true }
       )
     );
-    expect(state.RAM.slice(8000, 8006)).toEqual([333, 334, 222, 122, 100, 10]);
+    // This is a nice circle representation in RAM
+    // (took 382057 clock cycles)
+    expect(state.RAM.slice(16384, 24576)).toEqual([
+      ...new Array(1).fill(32640),
+      ...new Array(31).fill(undefined),
+      ...new Array(1).fill(65504),
+      ...new Array(31).fill(undefined),
+      ...new Array(1).fill(-16),
+      ...new Array(1).fill(16449),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-8),
+      ...new Array(1).fill(16483),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-4),
+      ...new Array(1).fill(16519),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-2),
+      ...new Array(1).fill(16559),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-2),
+      ...new Array(1).fill(16591),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16639),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16671),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16703),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16735),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16767),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16799),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-1),
+      ...new Array(1).fill(16831),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-2),
+      ...new Array(1).fill(16847),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-2),
+      ...new Array(1).fill(16879),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-4),
+      ...new Array(1).fill(16903),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-8),
+      ...new Array(1).fill(16931),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(-16),
+      ...new Array(1).fill(16961),
+      ...new Array(30).fill(undefined),
+      ...new Array(1).fill(65504),
+      ...new Array(31).fill(undefined),
+      ...new Array(1).fill(32640),
+    ]);
   });
 });
+
+function c(args) {
+  console.log(args);
+  return args;
+}

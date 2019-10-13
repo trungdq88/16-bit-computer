@@ -119,5 +119,42 @@ describe('assembler', () => {
         0;JMP
     `)
     ).toBe('4000 ec10 82 e090 10 e308 11 fdd8 10 fc20 e308 6 ea87');
+
+    expect(
+      assembler(
+        `
+        @SCREEN // test
+        D=A
+        @130
+        D=D+A
+        @X
+        M=D
+
+        (LOOP)
+        @i
+        DM=M+1
+        @X
+        A=M // A equals to M
+        M=D
+        @LOOP
+        0;JMP
+    `,
+        { renderUnlabeled: true }
+      )
+    ).toEqual([
+      '@16384 // test',
+      'D=A',
+      '@130',
+      'D=D+A',
+      '@16',
+      'M=D',
+      '@17',
+      'DM=M+1',
+      '@16',
+      'A=M // A equals to M',
+      'M=D',
+      '@6',
+      '0;JMP',
+    ]);
   });
 });

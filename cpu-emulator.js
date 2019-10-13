@@ -41,9 +41,9 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
       throw new Error('max iteration exceeded');
     }
 
-    const line = program[counter];
-
+    let line = program[counter];
     if (!line || !line.trim()) break;
+    line = line.replace(/\/\/.*$/, '').trim();
 
     if (line === 'BREAK') {
       // console.log('BREAK');

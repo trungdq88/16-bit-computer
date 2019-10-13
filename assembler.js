@@ -84,6 +84,11 @@ exports.assembler = function(
   const lines = source
     .trim()
     .split('\n')
+    .map(_ => _.replace(/^\/\/.*?$/, ''))
+    .map(_ => _.trim())
+    .filter(Boolean);
+
+  const noCommentLines = lines
     .map((_, index) => {
       if (_.indexOf('//') > -1) {
         comments[index] = _.split('//').slice(-1)[0];
@@ -94,7 +99,7 @@ exports.assembler = function(
     .map(_ => _.trim())
     .filter(Boolean);
 
-  lines.forEach((line, index) => {
+  noCommentLines.forEach((line, index) => {
     if (line[0] !== '(') return;
 
     const label = line.replace(/\(|\).*$/g, '');
@@ -108,26 +113,33 @@ exports.assembler = function(
     return null;
   });
 
-  const unlabeled = lines
+  const unlabeled = noCommentLines
     .map((line, index) => {
-      if (line[0] === '(') return null;
+      function value() {
+        if (line[0] === '(') return null;
 
-      if (line[0] !== '@') return line;
+        if (line[0] !== '@') return line;
 
-      const symbol = line.slice(1, line.length);
-      if (isNormalInteger(symbol)) {
-        return `@${parseInt(symbol, 10)}`;
-      } else if (PREDEFINED_SYMBOLS[symbol] !== undefined) {
-        return `@${PREDEFINED_SYMBOLS[symbol]}`;
-      } else if (assigned[symbol] !== undefined) {
-        return `@${assigned[symbol]}`;
-      } else if (labels[symbol] !== undefined) {
-        return `@${labels[symbol]}`;
-      } else {
-        assigned[symbol] = allocated;
-        allocated += 1;
-        return `@${assigned[symbol]}`;
+        const symbol = line.slice(1, line.length);
+        if (isNormalInteger(symbol)) {
+          return `@${parseInt(symbol, 10)}`;
+        } else if (PREDEFINED_SYMBOLS[symbol] !== undefined) {
+          return `@${PREDEFINED_SYMBOLS[symbol]}`;
+        } else if (assigned[symbol] !== undefined) {
+          return `@${assigned[symbol]}`;
+        } else if (labels[symbol] !== undefined) {
+          return `@${labels[symbol]}`;
+        } else {
+          assigned[symbol] = allocated;
+          allocated += 1;
+          return `@${assigned[symbol]}`;
+        }
       }
+
+      const v = value();
+      return v === null
+        ? null
+        : `${v}${comments[index] ? ` //${comments[index] || ''}` : ''}`;
     })
     .filter(_ => _ !== null);
 
@@ -136,6 +148,7 @@ exports.assembler = function(
   }
 
   const code = unlabeled
+    .map(line => line.replace(/\/\/.*$/, '').trim())
     .map((line, index) => {
       if (line[0] === '@') {
         const symbol = line.slice(1, line.length);
