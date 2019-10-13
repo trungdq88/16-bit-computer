@@ -91,11 +91,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="131" y="92">Display</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="47"/>
     </appear>
-    <wire from="(650,490)" to="(650,500)"/>
     <wire from="(590,310)" to="(590,320)"/>
     <wire from="(590,290)" to="(590,300)"/>
     <wire from="(190,380)" to="(190,450)"/>
-    <wire from="(50,620)" to="(110,620)"/>
     <wire from="(90,560)" to="(530,560)"/>
     <wire from="(520,460)" to="(710,460)"/>
     <wire from="(520,290)" to="(580,290)"/>
@@ -105,24 +103,27 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(90,300)" to="(90,380)"/>
     <wire from="(450,270)" to="(450,290)"/>
     <wire from="(390,360)" to="(390,440)"/>
+    <wire from="(70,620)" to="(110,620)"/>
     <wire from="(300,50)" to="(340,50)"/>
     <wire from="(100,550)" to="(520,550)"/>
     <wire from="(540,480)" to="(710,480)"/>
-    <wire from="(700,500)" to="(700,520)"/>
+    <wire from="(670,540)" to="(690,540)"/>
+    <wire from="(690,500)" to="(710,500)"/>
     <wire from="(110,70)" to="(260,70)"/>
     <wire from="(90,600)" to="(110,600)"/>
+    <wire from="(80,690)" to="(100,690)"/>
     <wire from="(450,350)" to="(450,390)"/>
     <wire from="(460,340)" to="(460,380)"/>
     <wire from="(760,270)" to="(760,370)"/>
     <wire from="(340,100)" to="(350,100)"/>
     <wire from="(340,80)" to="(350,80)"/>
+    <wire from="(100,640)" to="(100,690)"/>
     <wire from="(260,120)" to="(270,120)"/>
     <wire from="(110,150)" to="(120,150)"/>
-    <wire from="(90,650)" to="(100,650)"/>
+    <wire from="(100,640)" to="(110,640)"/>
     <wire from="(280,240)" to="(280,300)"/>
-    <wire from="(700,500)" to="(710,500)"/>
+    <wire from="(670,510)" to="(680,510)"/>
     <wire from="(750,270)" to="(760,270)"/>
-    <wire from="(640,500)" to="(650,500)"/>
     <wire from="(700,310)" to="(700,320)"/>
     <wire from="(460,240)" to="(460,310)"/>
     <wire from="(720,310)" to="(720,320)"/>
@@ -132,14 +133,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(540,310)" to="(590,310)"/>
     <wire from="(590,320)" to="(640,320)"/>
     <wire from="(260,90)" to="(310,90)"/>
-    <wire from="(50,620)" to="(50,630)"/>
+    <wire from="(70,620)" to="(70,630)"/>
     <wire from="(300,110)" to="(300,120)"/>
-    <wire from="(650,490)" to="(710,490)"/>
     <wire from="(720,320)" to="(780,320)"/>
     <wire from="(540,480)" to="(540,570)"/>
     <wire from="(530,470)" to="(530,560)"/>
     <wire from="(520,460)" to="(520,550)"/>
-    <wire from="(100,630)" to="(100,650)"/>
+    <wire from="(680,350)" to="(780,350)"/>
     <wire from="(260,70)" to="(260,90)"/>
     <wire from="(310,340)" to="(310,370)"/>
     <wire from="(240,300)" to="(280,300)"/>
@@ -148,16 +148,21 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(580,270)" to="(580,290)"/>
     <wire from="(280,240)" to="(320,240)"/>
     <wire from="(90,380)" to="(190,380)"/>
+    <wire from="(680,490)" to="(680,510)"/>
+    <wire from="(80,630)" to="(80,660)"/>
     <wire from="(440,300)" to="(530,300)"/>
     <wire from="(360,360)" to="(360,460)"/>
     <wire from="(680,310)" to="(680,350)"/>
-    <wire from="(530,300)" to="(530,470)"/>
     <wire from="(540,310)" to="(540,480)"/>
+    <wire from="(530,300)" to="(530,470)"/>
     <wire from="(520,290)" to="(520,460)"/>
+    <wire from="(690,500)" to="(690,540)"/>
     <wire from="(80,610)" to="(110,610)"/>
+    <wire from="(80,630)" to="(110,630)"/>
     <wire from="(390,440)" to="(420,440)"/>
     <wire from="(410,40)" to="(440,40)"/>
     <wire from="(590,290)" to="(610,290)"/>
+    <wire from="(680,490)" to="(710,490)"/>
     <wire from="(360,460)" to="(380,460)"/>
     <wire from="(90,560)" to="(90,600)"/>
     <wire from="(100,550)" to="(100,590)"/>
@@ -166,6 +171,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(440,240)" to="(460,240)"/>
     <wire from="(580,270)" to="(610,270)"/>
     <wire from="(440,340)" to="(460,340)"/>
+    <wire from="(60,660)" to="(80,660)"/>
     <wire from="(440,270)" to="(450,270)"/>
     <wire from="(440,350)" to="(450,350)"/>
     <wire from="(400,70)" to="(410,70)"/>
@@ -174,15 +180,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(310,340)" to="(320,340)"/>
     <wire from="(380,90)" to="(390,90)"/>
     <wire from="(80,570)" to="(540,570)"/>
-    <wire from="(40,630)" to="(50,630)"/>
     <wire from="(90,300)" to="(100,300)"/>
     <wire from="(460,310)" to="(540,310)"/>
     <wire from="(100,590)" to="(110,590)"/>
-    <wire from="(100,630)" to="(110,630)"/>
+    <wire from="(60,630)" to="(70,630)"/>
     <wire from="(310,370)" to="(760,370)"/>
     <wire from="(450,290)" to="(520,290)"/>
-    <wire from="(680,350)" to="(690,350)"/>
-    <wire from="(690,520)" to="(700,520)"/>
     <comp lib="5" loc="(1100,910)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
@@ -241,10 +244,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
-    </comp>
-    <comp lib="0" loc="(90,650)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="RESET"/>
     </comp>
     <comp lib="5" loc="(300,50)" name="Button">
       <a name="label" val="C"/>
@@ -2368,6 +2367,9 @@ ea87 0 fc20 ee88 0 fdc8 f fc20
 ea87
 </a>
     </comp>
+    <comp lib="0" loc="(780,350)" name="Tunnel">
+      <a name="label" val="CLK"/>
+    </comp>
     <comp lib="5" loc="(780,750)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
@@ -2377,6 +2379,10 @@ ea87
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
+    </comp>
+    <comp lib="0" loc="(60,660)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RESET"/>
     </comp>
     <comp lib="5" loc="(110,150)" name="Button">
       <a name="label" val="R"/>
@@ -2400,6 +2406,10 @@ ea87
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
+    <comp lib="0" loc="(670,510)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CLK"/>
+    </comp>
     <comp lib="5" loc="(460,1070)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
@@ -2415,14 +2425,14 @@ ea87
       <a name="max" val="0xffffffff"/>
     </comp>
     <comp lib="0" loc="(110,70)" name="Clock"/>
-    <comp lib="0" loc="(40,630)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="CLK"/>
-    </comp>
     <comp lib="5" loc="(1100,750)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
+    </comp>
+    <comp lib="0" loc="(80,690)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x20"/>
     </comp>
     <comp lib="5" loc="(780,910)" name="DotMatrix">
       <a name="inputtype" val="row"/>
@@ -2436,10 +2446,17 @@ ea87
     <comp lib="6" loc="(292,31)" name="Text">
       <a name="text" val="Manual Clock"/>
     </comp>
+    <comp lib="6" loc="(61,713)" name="Text">
+      <a name="text" val="Screen Width"/>
+    </comp>
     <comp lib="5" loc="(140,1070)" name="DotMatrix">
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
+    </comp>
+    <comp lib="0" loc="(670,540)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RESET"/>
     </comp>
     <comp loc="(140,590)" name="Display Control"/>
     <comp lib="5" loc="(940,750)" name="DotMatrix">
@@ -2455,10 +2472,6 @@ ea87
     <comp lib="0" loc="(120,150)" name="Tunnel">
       <a name="label" val="RESET"/>
     </comp>
-    <comp lib="0" loc="(640,500)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="CLK"/>
-    </comp>
     <comp lib="0" loc="(700,320)" name="Constant">
       <a name="facing" val="north"/>
     </comp>
@@ -2470,12 +2483,9 @@ ea87
     <comp lib="0" loc="(410,70)" name="Tunnel">
       <a name="label" val="RESET"/>
     </comp>
-    <comp lib="0" loc="(690,350)" name="Tunnel">
-      <a name="label" val="CLK"/>
-    </comp>
-    <comp lib="0" loc="(690,520)" name="Tunnel">
+    <comp lib="0" loc="(60,630)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="RESET"/>
+      <a name="label" val="CLK"/>
     </comp>
     <comp lib="5" loc="(140,590)" name="DotMatrix">
       <a name="inputtype" val="row"/>
@@ -6591,6 +6601,7 @@ ea87
       <circ-port height="8" pin="260,200" width="8" x="46" y="56"/>
       <circ-port height="10" pin="510,210" width="10" x="125" y="55"/>
       <circ-port height="10" pin="1070,530" width="10" x="125" y="65"/>
+      <circ-port height="8" pin="200,310" width="8" x="46" y="76"/>
       <circ-anchor facing="east" height="6" width="6" x="127" y="57"/>
     </appear>
     <wire from="(940,520)" to="(990,520)"/>
@@ -6606,8 +6617,8 @@ ea87
     <wire from="(800,440)" to="(800,450)"/>
     <wire from="(790,440)" to="(790,450)"/>
     <wire from="(490,320)" to="(540,320)"/>
+    <wire from="(200,310)" to="(320,310)"/>
     <wire from="(500,340)" to="(500,350)"/>
-    <wire from="(380,220)" to="(380,230)"/>
     <wire from="(730,390)" to="(730,420)"/>
     <wire from="(950,540)" to="(990,540)"/>
     <wire from="(430,230)" to="(430,260)"/>
@@ -6615,12 +6626,13 @@ ea87
     <wire from="(450,210)" to="(490,210)"/>
     <wire from="(710,290)" to="(710,310)"/>
     <wire from="(700,290)" to="(700,310)"/>
+    <wire from="(320,220)" to="(320,310)"/>
     <wire from="(500,340)" to="(540,340)"/>
     <wire from="(730,290)" to="(730,310)"/>
     <wire from="(720,290)" to="(720,310)"/>
     <wire from="(740,290)" to="(740,310)"/>
     <wire from="(590,420)" to="(590,460)"/>
-    <wire from="(380,220)" to="(410,220)"/>
+    <wire from="(320,220)" to="(410,220)"/>
     <wire from="(730,390)" to="(750,390)"/>
     <wire from="(490,210)" to="(490,320)"/>
     <wire from="(560,380)" to="(590,380)"/>
@@ -6663,9 +6675,6 @@ ea87
     <comp lib="6" loc="(1079,385)" name="Text">
       <a name="text" val="This decoder works with maximum 32 columns, but currently only use 8 columns as 32 is too big for logism"/>
     </comp>
-    <comp lib="6" loc="(379,263)" name="Text">
-      <a name="text" val="Screen width"/>
-    </comp>
     <comp lib="1" loc="(1000,560)" name="NOT Gate">
       <a name="facing" val="north"/>
     </comp>
@@ -6684,11 +6693,6 @@ ea87
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
       <a name="appear" val="right"/>
-    </comp>
-    <comp lib="0" loc="(380,230)" name="Constant">
-      <a name="facing" val="north"/>
-      <a name="width" val="16"/>
-      <a name="value" val="0x20"/>
     </comp>
     <comp loc="(740,450)" name="Pane Address Mapper"/>
     <comp lib="0" loc="(260,200)" name="Pin">
@@ -6716,6 +6720,11 @@ ea87
     </comp>
     <comp lib="6" loc="(498,378)" name="Text">
       <a name="text" val="Panel height (fixed at 16)"/>
+    </comp>
+    <comp lib="0" loc="(200,310)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Screen Width"/>
     </comp>
     <comp lib="6" loc="(470,49)" name="Text">
       <a name="text" val="Decode RAM address into Pane Address (where the pane is located) and Pane Local Address (which line of the pane to update)"/>
@@ -9643,6 +9652,7 @@ ea87
       <circ-port height="10" pin="3260,1150" width="10" x="1195" y="665"/>
       <circ-port height="10" pin="3260,1160" width="10" x="1195" y="675"/>
       <circ-port height="10" pin="3260,1170" width="10" x="1195" y="685"/>
+      <circ-port height="8" pin="600,120" width="8" x="46" y="106"/>
       <circ-anchor facing="east" height="6" width="6" x="77" y="57"/>
     </appear>
     <wire from="(3250,810)" to="(3260,810)"/>
@@ -10052,6 +10062,7 @@ ea87
     <wire from="(410,880)" to="(410,1040)"/>
     <wire from="(570,720)" to="(570,880)"/>
     <wire from="(510,150)" to="(510,260)"/>
+    <wire from="(610,120)" to="(610,280)"/>
     <wire from="(730,560)" to="(730,720)"/>
     <wire from="(730,880)" to="(730,1040)"/>
     <wire from="(890,720)" to="(890,880)"/>
@@ -10227,6 +10238,7 @@ ea87
     <wire from="(2770,690)" to="(2780,690)"/>
     <wire from="(890,480)" to="(890,560)"/>
     <wire from="(2610,1170)" to="(2620,1170)"/>
+    <wire from="(600,120)" to="(610,120)"/>
     <wire from="(3250,660)" to="(3260,660)"/>
     <wire from="(3250,980)" to="(3260,980)"/>
     <wire from="(2610,980)" to="(2620,980)"/>
@@ -10552,6 +10564,7 @@ ea87
     <wire from="(360,1050)" to="(440,1050)"/>
     <wire from="(680,1050)" to="(760,1050)"/>
     <wire from="(1000,1050)" to="(1080,1050)"/>
+    <wire from="(610,280)" to="(620,280)"/>
     <comp lib="0" loc="(2460,1130)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -12995,6 +13008,11 @@ ea87
       <a name="output" val="true"/>
       <a name="width" val="16"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(600,120)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Screen Width"/>
     </comp>
     <comp lib="0" loc="(2460,1150)" name="Pin">
       <a name="facing" val="west"/>
