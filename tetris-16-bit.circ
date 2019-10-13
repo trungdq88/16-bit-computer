@@ -4638,7 +4638,7 @@ fc10 13 f088 22 ea87 96 ea87
     </comp>
     <comp lib="2" loc="(590,460)" name="Decoder">
       <a name="selloc" val="tr"/>
-      <a name="select" val="2"/>
+      <a name="select" val="4"/>
       <a name="enable" val="false"/>
     </comp>
     <comp lib="0" loc="(560,380)" name="Splitter">
@@ -4682,6 +4682,9 @@ fc10 13 f088 22 ea87 96 ea87
     <comp lib="6" loc="(470,49)" name="Text">
       <a name="text" val="Decode RAM address into Pane Address (where the pane is located) and Pane Local Address (which line of the pane to update)"/>
     </comp>
+    <comp lib="6" loc="(485,528)" name="Text">
+      <a name="text" val="Currently only use 4 rows"/>
+    </comp>
     <comp lib="2" loc="(1020,530)" name="Multiplexer">
       <a name="width" val="32"/>
       <a name="enable" val="false"/>
@@ -4693,6 +4696,11 @@ fc10 13 f088 22 ea87 96 ea87
     </comp>
     <comp lib="0" loc="(560,420)" name="Splitter">
       <a name="facing" val="north"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="6" loc="(519,504)" name="Text">
+      <a name="text" val="Max 16 rows"/>
     </comp>
     <comp lib="0" loc="(750,330)" name="Splitter">
       <a name="facing" val="north"/>
