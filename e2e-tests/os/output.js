@@ -15,10 +15,10 @@ pop static 0
 push constant 6
 call String.new 1
 pop static 3
-// call Output.initMap 0
-// pop temp 0
-// call Output.createShiftedMap 0
-// pop temp 0
+call Output.initMap 0
+pop temp 0
+call Output.createShiftedMap 0
+pop temp 0
 push constant 0
 return
 

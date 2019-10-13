@@ -4,6 +4,7 @@ const { vmTranslator, sharedCode } = require('./vm-translator.js');
 console.log(
   assembler(`
 // Spiral.asm -- Draw a square spiral on the screen.
+// Modified for 128x64 screen size
 
 // MACRO	@maskTable	// Allocate 'maskTable' at 100
 // 	@100
@@ -38,7 +39,7 @@ console.log(
 
 	@SCREEN		// 'ptr' = middle screen word
 	D=A
-	@260		// 128 rows + 16 words 
+	@260		// center of the screen: 32 * 8 + 4
 	D=D+A
 	@ptr
 	M=D	

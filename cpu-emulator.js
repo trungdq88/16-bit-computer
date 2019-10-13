@@ -8,7 +8,7 @@ function getSigned(binStr) {
   return parseInt(binStr, 2) >> 0;
 }
 
-const MAX = 1000000;
+const MAX = 10000000;
 let c = 0;
 
 exports.cpuEmulator = function(program, { returnClock = false } = {}) {
@@ -141,7 +141,6 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
     counter += 1;
   }
 
-  // console.log({ clock });
   if (returnClock) {
     return {
       ...state,

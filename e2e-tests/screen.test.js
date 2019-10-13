@@ -133,7 +133,7 @@ ${sharedCode()}
       )
     );
     // This is a nice circle representation in RAM
-    // (took 382057 clock cycles)
+    // (took 382,057 clock cycles)
     expect(state.RAM.slice(16384, 24576)).toEqual([
       ...new Array(1).fill(32640),
       ...new Array(31).fill(undefined),
