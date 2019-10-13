@@ -123,6 +123,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(100,640)" to="(110,640)"/>
     <wire from="(280,240)" to="(280,300)"/>
     <wire from="(670,510)" to="(680,510)"/>
+    <wire from="(410,40)" to="(480,40)"/>
     <wire from="(750,270)" to="(760,270)"/>
     <wire from="(700,310)" to="(700,320)"/>
     <wire from="(460,240)" to="(460,310)"/>
@@ -160,7 +161,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(80,610)" to="(110,610)"/>
     <wire from="(80,630)" to="(110,630)"/>
     <wire from="(390,440)" to="(420,440)"/>
-    <wire from="(410,40)" to="(440,40)"/>
     <wire from="(590,290)" to="(610,290)"/>
     <wire from="(680,490)" to="(710,490)"/>
     <wire from="(360,460)" to="(380,460)"/>
@@ -239,6 +239,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="CLK"/>
     </comp>
     <comp loc="(710,460)" name="Debug Board"/>
+    <comp lib="0" loc="(480,40)" name="Probe">
+      <a name="facing" val="west"/>
+      <a name="radix" val="10signed"/>
+    </comp>
     <comp lib="1" loc="(300,120)" name="NOT Gate"/>
     <comp lib="5" loc="(140,750)" name="DotMatrix">
       <a name="inputtype" val="row"/>
@@ -257,10 +261,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputtype" val="row"/>
       <a name="matrixcols" val="16"/>
       <a name="matrixrows" val="16"/>
-    </comp>
-    <comp lib="0" loc="(440,40)" name="Probe">
-      <a name="facing" val="west"/>
-      <a name="radix" val="10signed"/>
     </comp>
     <comp lib="5" loc="(1100,1070)" name="DotMatrix">
       <a name="inputtype" val="row"/>
@@ -439,6 +439,9 @@ fc10 13 f088 22 ea87 96 ea87
     <comp lib="0" loc="(60,630)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="6" loc="(520,76)" name="Text">
+      <a name="text" val="Clock cycles"/>
     </comp>
     <comp lib="5" loc="(140,590)" name="DotMatrix">
       <a name="inputtype" val="row"/>
