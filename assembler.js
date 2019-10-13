@@ -166,7 +166,9 @@ exports.assembler = function(
         const jmpBits = JMP_MAP[parts.jump] || 0b000;
 
         if (COMP_MAP[parts.comp] === undefined) {
-          throw new Error(parts.comp + ' is not a valid comp. line = ' + line);
+          throw new Error(
+            parts.comp + ' is not a valid comp. line = ' + JSON.stringify(line)
+          );
         }
 
         const result =
