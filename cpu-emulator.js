@@ -141,7 +141,6 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
     counter += 1;
   }
 
-  // console.log({ clock });
   if (returnClock) {
     return {
       ...state,
