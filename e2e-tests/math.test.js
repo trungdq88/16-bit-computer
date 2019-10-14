@@ -23,12 +23,6 @@ call Memory.init 0
 pop temp 0
 call Math.init 0
 pop temp 0
-// call Screen.init 0
-// pop temp 0
-// call Output.init 0
-// pop temp 0
-// call Keyboard.init 0
-// pop temp 0
 call Main.main 0
 pop temp 0
 call Sys.halt 0

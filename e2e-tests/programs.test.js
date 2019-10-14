@@ -1,8 +1,8 @@
-const { assembler } = require('./assembler.js');
-const { vmTranslator, sharedCode } = require('./vm-translator.js');
-const { cpuEmulator } = require('./cpu-emulator.js');
+const { assembler } = require('../assembler.js');
+const { vmTranslator, sharedCode } = require('../vm-translator.js');
+const { cpuEmulator } = require('../cpu-emulator.js');
 
-describe('end to end tests', () => {
+describe('test programs', () => {
   it('fibonacci', () => {
     function findNthFibonacci(n) {
       return cpuEmulator(

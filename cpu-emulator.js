@@ -1,4 +1,4 @@
-const { parseParts } = require('./parse-parts.js');
+const { parseParts } = require('./utils.js');
 
 function getSigned(binStr) {
   binStr =
@@ -8,8 +8,8 @@ function getSigned(binStr) {
   return parseInt(binStr, 2) >> 0;
 }
 
-const MAX = 10000000;
-let c = 0;
+const MAX_CYCLES = 10000000;
+let cycles = 0;
 
 exports.cpuEmulator = function(program, { returnClock = false } = {}) {
   let distribution = {};
@@ -37,8 +37,8 @@ exports.cpuEmulator = function(program, { returnClock = false } = {}) {
     distribution[counter] = distribution[counter] || 0;
     distribution[counter] += 1;
 
-    if (c++ > MAX) {
-      throw new Error('max iteration exceeded');
+    if (cycles++ > MAX_CYCLES) {
+      throw new Error('max clock cycles exceeded');
     }
 
     let line = program[counter];

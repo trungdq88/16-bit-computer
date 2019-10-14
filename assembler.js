@@ -1,4 +1,4 @@
-const { parseParts } = require('./parse-parts.js');
+const { parseParts } = require('./utils.js');
 
 const COMP_MAP = {
   '0': 0b0101010,

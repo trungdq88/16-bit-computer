@@ -1,4 +1,4 @@
-const { parseParts } = require('./parse-parts.js');
+const { parseParts } = require('./utils.js');
 
 describe('parse parts', () => {
   it('works', () => {
