@@ -33,10 +33,10 @@ Other than my crappy circuit wires / logic gates arrangements, I did not invent 
 ![](images/try%20spiral%20with%20my%20screen%202.gif)
 
 ### CPU
-![](cpu.png)
+![](images/cpu.png)
 
 ### ALU
-![](alu.png)
+![](images/alu.png)
 
 ### Display Control
-![](display-control.png)
+![](images/display-control.png)
